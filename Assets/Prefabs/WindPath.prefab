@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1177242910156708984
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3506726981073934031}
+  - component: {fileID: 4324699126991138325}
+  m_Layer: 0
+  m_Name: WindPath
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3506726981073934031
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177242910156708984}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4324699126991138325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177242910156708984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 884689e6c7a369946bc2aa7e1381a5ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataContainer: {fileID: 0}
+  startPosition: {x: 0, y: 0, z: 0}
+  maxSteps: 1000
+  stepScale: 0.1
+  gridDimensions: {x: 0, y: 0, z: 0}
+  gridMin: {x: 0, y: 0, z: 0}
+  gridMax: {x: 0, y: 0, z: 0}
+  interpolatedPath: []
+  interpolatedPathWorldCoords: []
+  windVectors: []
+  magnitudes: []
+  lineRenderer: {fileID: 0}
+  lineMaterial: {fileID: 2100000, guid: 2e8fc4d0fb90ac743add265698c0cadc, type: 2}
+  lineWidth: 1.5
+  lineColor: {r: 1, g: 1, b: 1, a: 1}
+  showStartCube: 1
+  showEndCube: 1
+  cubeSize: 10
+  showSurroundingPoints: 0
+  cubeLength: 60
+  cubeWidth: 3
+  surroundingPointColor: {r: 0, g: 1, b: 1, a: 1}
