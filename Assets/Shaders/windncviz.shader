@@ -10,6 +10,13 @@ Shader "Unlit/windncviz"
         _Color4("Color4", Color) = (1,1,1,1)
         _Color5("Color5", Color) = (1,1,1,1)
         _AlfaCorrection("AlfaCorrection", float) = 0.75
+
+        [Header(Visualization Trimming)]
+        _MaxAltitude("Max Altitude", Range(0, 1)) = 1.0
+        _MinAltitude("Min Altitude", Range(0, 1)) = 0.0
+        [Toggle] _EnableSpeedTrim("Enable Speed Trim", Float) = 0.0
+        _SpeedTrimRange("Speed Trim Range", Range(0, 1)) = 0.85
+        _SpeedTrimWidth("Speed Trim Width", Range(0.01, 0.5)) = 0.1
     }
     SubShader
     {
@@ -51,6 +58,13 @@ Shader "Unlit/windncviz"
             fixed4 _Color0, _Color1, _Color2, _Color3, _Color4, _Color5;
             float _AlfaCorrection;
 
+            // Trimming parameters
+            float _MaxAltitude;
+            float _MinAltitude;
+            float _EnableSpeedTrim;
+            float _SpeedTrimRange;
+            float _SpeedTrimWidth;
+
             v2f vert (appdata v)
             {
                 v2f o;
@@ -64,6 +78,32 @@ Shader "Unlit/windncviz"
 
             fixed4 frag(v2f i) : SV_Target
             {
+                // Apply altitude trimming using normalized MSL
+                float altitudeTrim = step(_MinAltitude, i.uv3.x) * step(i.uv3.x, _MaxAltitude);
+                
+                // Apply speed trimming using normalized magnitude
+                float speedTrim = 1.0;
+                if (_EnableSpeedTrim > 0.5)
+                {
+                    float speedDiff = abs(i.uv2.x - _SpeedTrimRange);
+                    speedTrim = 1.0 - saturate(speedDiff / _SpeedTrimWidth);
+                }
+
+                // Check altitude bounds using MSL data (UV3.x)
+                float mslHeight = i.uv3.x;
+                if (mslHeight < _MinAltitude || mslHeight > _MaxAltitude)
+                    discard;
+                
+                // Check speed trim if enabled
+                if (_EnableSpeedTrim > 0.5)
+                {
+                    float speed = i.uv2.x; // Normalized wind magnitude
+                    float trimMin = _SpeedTrimRange - _SpeedTrimWidth;
+                    float trimMax = _SpeedTrimRange + _SpeedTrimWidth;
+                    if (speed < trimMin || speed > trimMax)
+                        discard;
+                }
+
                 fixed4 col = tex2D(_MainTex, i.uv);
                 float h = i.uv2.x;
                 float x;
@@ -92,7 +132,10 @@ Shader "Unlit/windncviz"
                     x = (h - 0.8) * 5;
                     col *= (1 - x) * _Color4 + x * _Color5;
                 }
-                col.a *= _AlfaCorrection;
+
+                // Apply final alpha with trimming
+                col.a *= _AlfaCorrection * altitudeTrim * speedTrim;
+                
                 UNITY_APPLY_FOG(i.fogCoord, col);
                 return col;
             }
