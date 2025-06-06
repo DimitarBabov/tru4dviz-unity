@@ -9,6 +9,10 @@ public class WindFieldMeshNc : MonoBehaviour
     public float arrowScale = 1.5f; // Overall scale factor for arrows
     public DataContainer dataContainer;
     public CompassMarkers compassMarkers; // Reference to compass markers component
+    [Tooltip("If true, all arrows will have the same length but keep their color based on magnitude")]
+    public bool normalizeArrowLengths = false;
+    [Tooltip("Fixed length to use when arrows are normalized")]
+    public float normalizedArrowLength = 1.0f;
 
     public Vector3 lat_origin;
     public Vector3 lon_origin;
@@ -117,17 +121,43 @@ public class WindFieldMeshNc : MonoBehaviour
             float magNorm = dataContainer.mag_norm[i]; // Always use actual magnitude for coloring
 
             Vector3 tipPos = new Vector3(x, msl, y);
-            Vector3 windVec = new Vector3(uNorm, wNorm, vNorm);
+            
+            // Get physical wind components
+            Vector2 uMinMax = dataContainer.uMinMax;
+            Vector2 vMinMax = dataContainer.vMinMax;
+            Vector2 wMinMax = dataContainer.wMinMax;
 
-            // Calculate arrow length proportional to actual magnitude
-            float maxMagnitude = dataContainer.magMinMax.y; // Get max magnitude from data container
-            float lengthScale = mag / maxMagnitude; // Ratio of current magnitude to max magnitude
-            float scaledLength = lengthScale * gridCellWidth * arrowScale; // Scale length proportionally with arrowScale
-            float scaledBaseSize = scaledLength * arrowBaseToLength; // Base size as fraction of arrow length
+            float uPhysical = uMinMax.x + uNorm * (uMinMax.y - uMinMax.x);
+            float vPhysical = vMinMax.x + vNorm * (vMinMax.y - vMinMax.x);
+            float wPhysical = wMinMax.x + wNorm * (wMinMax.y - wMinMax.x);
+
+            // Create physical wind vector: (u, w, v) -> (X, Y, Z) in grid space
+            Vector3 windVec = new Vector3(uPhysical, wPhysical, vPhysical);
+
+            // Calculate arrow length
+            float arrowLength;
+            if (normalizeArrowLengths)
+            {
+                // Use normalized direction with fixed length, but keep original magnitude for coloring
+                if (windVec.magnitude > 0.001f)
+                {
+                    windVec = windVec.normalized * normalizedArrowLength * gridCellWidth * arrowScale;
+                }
+                arrowLength = normalizedArrowLength * gridCellWidth * arrowScale;
+            }
+            else
+            {
+                // Original behavior - length proportional to magnitude
+                float maxMagnitude = dataContainer.magMinMax.y;
+                float lengthScale = mag / maxMagnitude;
+                arrowLength = lengthScale * gridCellWidth * arrowScale;
+            }
+
+            float scaledBaseSize = arrowLength * arrowBaseToLength;
 
             // Calculate arrow orientation
             Vector3 windDir = windVec.normalized;
-            Vector3 basePos = tipPos + windDir * scaledLength;
+            Vector3 basePos = tipPos + windDir * arrowLength;
             
             // Create local coordinate system for the arrow
             Vector3 forward = windDir;
@@ -150,9 +180,9 @@ public class WindFieldMeshNc : MonoBehaviour
                 Debug.Log($"  Original Magnitude: {mag:F3} m/s");
                 Debug.Log($"  Normalized Magnitude: {magNorm:F3}");
                 Debug.Log($"  Grid Cell Width: {gridCellWidth:F3}");
-                Debug.Log($"  Proportional Length: {scaledLength:F3}");
-                Debug.Log($"  Final Scaled Length: {scaledLength:F3}");
-                Debug.Log($"  Wind Vector (u,w,v): ({uNorm:F3}, {wNorm:F3}, {vNorm:F3})");
+                Debug.Log($"  Proportional Length: {arrowLength:F3}");
+                Debug.Log($"  Final Scaled Length: {arrowLength:F3}");
+                Debug.Log($"  Wind Vector (u,w,v): ({uPhysical:F3}, {wPhysical:F3}, {vPhysical:F3})");
                 Debug.Log($"  Start Point (tip): {tipPos}");
                 Debug.Log($"  End Point (base): {basePos}");
                 Debug.Log($"  Delta: {delta}");
