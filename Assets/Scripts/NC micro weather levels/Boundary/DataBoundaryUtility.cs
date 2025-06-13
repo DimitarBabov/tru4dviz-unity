@@ -8,6 +8,11 @@ public class DataBoundaryUtility : MonoBehaviour
     public bool autoCalculateOnDataLoad = true;
     public bool showDebugInfo = true;
     
+    [Header("Streamlines Renderer Reference")]
+    [Tooltip("Reference to WindFieldStreamlinesRenderer to use its spatial bounds for visualization")]
+    public WindFieldStreamlinesRenderer streamlinesRenderer;
+    public bool useStreamlinesBounds = true;
+    
     [Header("Calculated Boundaries")]
     public Vector3 dataMin;
     public Vector3 dataMax;
@@ -29,6 +34,15 @@ public class DataBoundaryUtility : MonoBehaviour
     
     private GameObject boundaryContainer;
     private LineRenderer[] boundaryLines;
+    
+    // Track previous bounds values for dynamic updates
+    private float previousBoundsLeft = -1f;
+    private float previousBoundsRight = -1f;
+    private float previousBoundsFront = -1f;
+    private float previousBoundsBack = -1f;
+    private float previousMinAltitude = -1f;
+    private float previousMaxAltitude = -1f;
+    private bool previousUseStreamlinesBounds = false;
     
     void Start()
     {
@@ -295,29 +309,57 @@ public class DataBoundaryUtility : MonoBehaviour
     {
         if (!showBoundaryGizmos || !boundariesCalculated) return;
         
+        Vector3 minCorner = dataMin;
+        Vector3 maxCorner = dataMax;
+        Vector3 center = dataCenter;
+        Vector3 size = dataSize;
+        
+        // Apply streamlines renderer spatial bounds if available and enabled
+        if (useStreamlinesBounds && streamlinesRenderer != null)
+        {
+            // Calculate the actual bounds based on streamlines renderer spatial bounds
+            Vector3 dataRange = dataMax - dataMin;
+            
+            // Apply horizontal bounds (left/right affects X, front/back affects Z)
+            float leftBound = dataMin.x + streamlinesRenderer.boundsLeft * dataRange.x;
+            float rightBound = dataMin.x + streamlinesRenderer.boundsRight * dataRange.x;
+            float frontBound = dataMin.z + streamlinesRenderer.boundsFront * dataRange.z;
+            float backBound = dataMin.z + streamlinesRenderer.boundsBack * dataRange.z;
+            
+            // Apply vertical bounds (min/max altitude affects Y)
+            float bottomBound = dataMin.y + streamlinesRenderer.minAltitude * dataRange.y;
+            float topBound = dataMin.y + streamlinesRenderer.maxAltitude * dataRange.y;
+            
+            // Update bounds for gizmo drawing
+            minCorner = new Vector3(leftBound, bottomBound, frontBound);
+            maxCorner = new Vector3(rightBound, topBound, backBound);
+            center = (minCorner + maxCorner) * 0.5f;
+            size = maxCorner - minCorner;
+        }
+        
         // Draw the boundary box
         Gizmos.color = boundaryColor;
-        DrawWireCube(dataCenter, dataSize);
+        DrawWireCube(center, size);
         
         // Draw center point
         Gizmos.color = centerColor;
-        Gizmos.DrawSphere(dataCenter, Mathf.Min(dataSize.x, dataSize.y, dataSize.z) * 0.02f);
+        Gizmos.DrawSphere(center, Mathf.Min(size.x, size.y, size.z) * 0.02f);
         
         // Draw corner points
         Gizmos.color = Color.red;
-        float cornerSize = Mathf.Min(dataSize.x, dataSize.y, dataSize.z) * 0.01f;
+        float cornerSize = Mathf.Min(size.x, size.y, size.z) * 0.01f;
         
         // 8 corners of the bounding box
         Vector3[] corners = new Vector3[8]
         {
-            new Vector3(dataMin.x, dataMin.y, dataMin.z), // min corner
-            new Vector3(dataMax.x, dataMin.y, dataMin.z),
-            new Vector3(dataMin.x, dataMax.y, dataMin.z),
-            new Vector3(dataMax.x, dataMax.y, dataMin.z),
-            new Vector3(dataMin.x, dataMin.y, dataMax.z),
-            new Vector3(dataMax.x, dataMin.y, dataMax.z),
-            new Vector3(dataMin.x, dataMax.y, dataMax.z),
-            new Vector3(dataMax.x, dataMax.y, dataMax.z)  // max corner
+            new Vector3(minCorner.x, minCorner.y, minCorner.z), // min corner
+            new Vector3(maxCorner.x, minCorner.y, minCorner.z),
+            new Vector3(minCorner.x, maxCorner.y, minCorner.z),
+            new Vector3(maxCorner.x, maxCorner.y, minCorner.z),
+            new Vector3(minCorner.x, minCorner.y, maxCorner.z),
+            new Vector3(maxCorner.x, minCorner.y, maxCorner.z),
+            new Vector3(minCorner.x, maxCorner.y, maxCorner.z),
+            new Vector3(maxCorner.x, maxCorner.y, maxCorner.z)  // max corner
         };
         
         foreach (Vector3 corner in corners)
@@ -327,11 +369,11 @@ public class DataBoundaryUtility : MonoBehaviour
         
         // Draw coordinate axes from center
         Gizmos.color = Color.red;   // X-axis
-        Gizmos.DrawRay(dataCenter, Vector3.right * dataSize.x * 0.1f);
+        Gizmos.DrawRay(center, Vector3.right * size.x * 0.1f);
         Gizmos.color = Color.green; // Y-axis
-        Gizmos.DrawRay(dataCenter, Vector3.up * dataSize.y * 0.1f);
+        Gizmos.DrawRay(center, Vector3.up * size.y * 0.1f);
         Gizmos.color = Color.blue;  // Z-axis
-        Gizmos.DrawRay(dataCenter, Vector3.forward * dataSize.z * 0.1f);
+        Gizmos.DrawRay(center, Vector3.forward * size.z * 0.1f);
     }
     
     void DrawWireCube(Vector3 center, Vector3 size)
@@ -439,16 +481,51 @@ public class DataBoundaryUtility : MonoBehaviour
     
     Vector3[] GetBoundaryCorners()
     {
+        Vector3 minCorner = dataMin;
+        Vector3 maxCorner = dataMax;
+        
+        // Apply streamlines renderer spatial bounds if available and enabled
+        if (useStreamlinesBounds && streamlinesRenderer != null)
+        {
+            // Calculate the actual bounds based on streamlines renderer spatial bounds
+            Vector3 dataRange = dataMax - dataMin;
+            
+            // Apply horizontal bounds (left/right affects X, front/back affects Z)
+            float leftBound = dataMin.x + streamlinesRenderer.boundsLeft * dataRange.x;
+            float rightBound = dataMin.x + streamlinesRenderer.boundsRight * dataRange.x;
+            float frontBound = dataMin.z + streamlinesRenderer.boundsFront * dataRange.z;
+            float backBound = dataMin.z + streamlinesRenderer.boundsBack * dataRange.z;
+            
+            // Apply vertical bounds (min/max altitude affects Y)
+            float bottomBound = dataMin.y + streamlinesRenderer.minAltitude * dataRange.y;
+            float topBound = dataMin.y + streamlinesRenderer.maxAltitude * dataRange.y;
+            
+            // Update min/max corners with streamlines bounds
+            minCorner = new Vector3(leftBound, bottomBound, frontBound);
+            maxCorner = new Vector3(rightBound, topBound, backBound);
+            
+            if (showDebugInfo)
+            {
+                Debug.Log($"Using streamlines spatial bounds:");
+                Debug.Log($"  Left: {streamlinesRenderer.boundsLeft:F3} -> X: {leftBound:F3}");
+                Debug.Log($"  Right: {streamlinesRenderer.boundsRight:F3} -> X: {rightBound:F3}");
+                Debug.Log($"  Front: {streamlinesRenderer.boundsFront:F3} -> Z: {frontBound:F3}");
+                Debug.Log($"  Back: {streamlinesRenderer.boundsBack:F3} -> Z: {backBound:F3}");
+                Debug.Log($"  Min Altitude: {streamlinesRenderer.minAltitude:F3} -> Y: {bottomBound:F3}");
+                Debug.Log($"  Max Altitude: {streamlinesRenderer.maxAltitude:F3} -> Y: {topBound:F3}");
+            }
+        }
+        
         return new Vector3[8]
         {
-            new Vector3(dataMin.x, dataMin.y, dataMin.z), // 0: min corner
-            new Vector3(dataMax.x, dataMin.y, dataMin.z), // 1
-            new Vector3(dataMax.x, dataMin.y, dataMax.z), // 2
-            new Vector3(dataMin.x, dataMin.y, dataMax.z), // 3
-            new Vector3(dataMin.x, dataMax.y, dataMin.z), // 4
-            new Vector3(dataMax.x, dataMax.y, dataMin.z), // 5
-            new Vector3(dataMax.x, dataMax.y, dataMax.z), // 6
-            new Vector3(dataMin.x, dataMax.y, dataMax.z)  // 7: max corner
+            new Vector3(minCorner.x, minCorner.y, minCorner.z), // 0: min corner
+            new Vector3(maxCorner.x, minCorner.y, minCorner.z), // 1
+            new Vector3(maxCorner.x, minCorner.y, maxCorner.z), // 2
+            new Vector3(minCorner.x, minCorner.y, maxCorner.z), // 3
+            new Vector3(minCorner.x, maxCorner.y, minCorner.z), // 4
+            new Vector3(maxCorner.x, maxCorner.y, minCorner.z), // 5
+            new Vector3(maxCorner.x, maxCorner.y, maxCorner.z), // 6
+            new Vector3(minCorner.x, maxCorner.y, maxCorner.z)  // 7: max corner
         };
     }
     
@@ -469,10 +546,87 @@ public class DataBoundaryUtility : MonoBehaviour
         DestroyRuntimeBoundaryVisualization();
     }
     
+    void Update()
+    {
+        // Monitor streamlines renderer bounds for dynamic updates
+        if (useStreamlinesBounds && streamlinesRenderer != null && boundariesCalculated)
+        {
+            bool boundsChanged = false;
+            
+            // Check if any bounds have changed
+            if (previousBoundsLeft != streamlinesRenderer.boundsLeft ||
+                previousBoundsRight != streamlinesRenderer.boundsRight ||
+                previousBoundsFront != streamlinesRenderer.boundsFront ||
+                previousBoundsBack != streamlinesRenderer.boundsBack ||
+                previousMinAltitude != streamlinesRenderer.minAltitude ||
+                previousMaxAltitude != streamlinesRenderer.maxAltitude ||
+                previousUseStreamlinesBounds != useStreamlinesBounds)
+            {
+                boundsChanged = true;
+            }
+            
+            // Update boundary visualization if bounds changed
+            if (boundsChanged)
+            {
+                // Store current values
+                previousBoundsLeft = streamlinesRenderer.boundsLeft;
+                previousBoundsRight = streamlinesRenderer.boundsRight;
+                previousBoundsFront = streamlinesRenderer.boundsFront;
+                previousBoundsBack = streamlinesRenderer.boundsBack;
+                previousMinAltitude = streamlinesRenderer.minAltitude;
+                previousMaxAltitude = streamlinesRenderer.maxAltitude;
+                previousUseStreamlinesBounds = useStreamlinesBounds;
+                
+                // Refresh visualization
+                if (showRuntimeBoundary)
+                {
+                    CreateRuntimeBoundaryVisualization();
+                }
+                
+                if (showDebugInfo)
+                {
+                    Debug.Log("Boundary visualization updated due to streamlines bounds change");
+                }
+            }
+        }
+        else if (!useStreamlinesBounds && previousUseStreamlinesBounds)
+        {
+            // Switched from using streamlines bounds to not using them
+            previousUseStreamlinesBounds = useStreamlinesBounds;
+            if (showRuntimeBoundary && boundariesCalculated)
+            {
+                CreateRuntimeBoundaryVisualization();
+            }
+        }
+    }
+    
     [ContextMenu("Toggle Runtime Boundary")]
     public void ToggleRuntimeBoundary()
     {
         showRuntimeBoundary = !showRuntimeBoundary;
         UpdateRuntimeBoundaryVisualization();
+    }
+    
+    [ContextMenu("Toggle Streamlines Bounds Usage")]
+    public void ToggleStreamlinesBoundsUsage()
+    {
+        useStreamlinesBounds = !useStreamlinesBounds;
+        UpdateRuntimeBoundaryVisualization();
+        Debug.Log($"Using streamlines bounds: {useStreamlinesBounds}");
+    }
+    
+    [ContextMenu("Update Boundary Visualization")]
+    public void UpdateBoundaryVisualizationFromStreamlines()
+    {
+        if (showRuntimeBoundary && boundariesCalculated)
+        {
+            CreateRuntimeBoundaryVisualization();
+        }
+    }
+    
+    // Public method for external scripts to trigger boundary update
+    public void RefreshBoundaryVisualization()
+    {
+        UpdateBoundaryVisualizationFromStreamlines();
     }
 } 

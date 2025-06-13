@@ -1,0 +1,7 @@
+remove middle click to checkbox
+left click move
+adjust arrow moving speed
+Right click rotate
+compass
+
+

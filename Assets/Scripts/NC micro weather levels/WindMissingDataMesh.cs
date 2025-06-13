@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -50,6 +51,10 @@ public class WindMissingDataMesh : MonoBehaviour
     public bool generateTopSurface = true;
     public GameObject topSurfacePrefab; // Optional prefab for top surface, if null will create automatically
     
+    [Header("Loading Status")]
+    [Tooltip("Shows current loading status")]
+    public string loadingStatus = "Waiting for data...";
+    
     [Header("Debug")]
     public bool showDebugInfo = true;
 
@@ -60,20 +65,42 @@ public class WindMissingDataMesh : MonoBehaviour
         if (ncDataContainer == null)
         {
             Debug.LogError("NcDataContainerImgs reference not assigned!");
+            loadingStatus = "Error: No data container assigned";
             return;
         }
 
-        if (!ncDataContainer.IsLoaded)
+        // Start the coroutine to wait for data loading
+        StartCoroutine(WaitForDataAndGenerateMesh());
+    }
+
+    IEnumerator WaitForDataAndGenerateMesh()
+    {
+        loadingStatus = "Waiting for data container to load...";
+        
+        // Wait for the data container to finish loading
+        while (!ncDataContainer.IsLoaded)
         {
-            Debug.LogError("NcDataContainerImgs is not loaded yet!");
-            return;
+            // Update status from data container if available
+            if (!string.IsNullOrEmpty(ncDataContainer.loadingStatus))
+            {
+                loadingStatus = $"Data loading: {ncDataContainer.loadingStatus} ({ncDataContainer.loadingProgress:P0})";
+            }
+            
+            yield return new WaitForSeconds(0.1f); // Check every 100ms
         }
+
+        loadingStatus = "Data loaded, validating...";
+        yield return null;
 
         if (ncDataContainer.levelImages == null || ncDataContainer.levelImages.Count == 0)
         {
             Debug.LogError("No textures found in NcDataContainerImgs.levelImages!");
-            return;
+            loadingStatus = "Error: No images found";
+            yield break;
         }
+
+        loadingStatus = "Generating mesh...";
+        yield return null;
 
         // Get quad size from grid cell width
         quadSize = ncDataContainer.gridCellSize.x;
@@ -93,7 +120,10 @@ public class WindMissingDataMesh : MonoBehaviour
             Debug.Log($"Processing {ncDataContainer.levelImages.Count} images from NcDataContainerImgs");
         }
 
+        // Generate the mesh (this might be heavy, so we could yield periodically if needed)
         GenerateMultiImageMesh();
+        
+        loadingStatus = "Mesh generation complete!";
     }
 
     void GenerateMultiImageMesh()

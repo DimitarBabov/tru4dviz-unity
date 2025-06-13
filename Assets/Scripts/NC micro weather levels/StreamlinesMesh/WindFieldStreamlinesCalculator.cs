@@ -1,11 +1,16 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using TMPro;
 
 public class WindFieldStreamlinesCalculator : MonoBehaviour
 {
     [Header("Data Source")]
     public NcDataContainerImgs dataContainer;
+    
+    [Header("UI Status")]
+    public TextMeshProUGUI statusText;
     
     [Header("Streamline Generation Settings")]
     public bool generateOnStart = true;
@@ -13,7 +18,7 @@ public class WindFieldStreamlinesCalculator : MonoBehaviour
     public bool useStartPointGenerator = true; // Use WindStartStreamlinePoints component if available
     [Tooltip("Fallback method when WindStartStreamlinePoints is not available")]
     public bool fallbackUseWallPointsOnly = true; // Fallback for when start point generator is not available
-    [Range(1, 10000)]
+    [Range(1, 100000)]
     public int maxStreamlines = 1000;
     
     [Header("Backward Tracing Settings")]
@@ -32,13 +37,7 @@ public class WindFieldStreamlinesCalculator : MonoBehaviour
     [Range(0f, 10f)]
     public float randomOffsetRange = 2f; // Range for random UV offsets (0-10)
     
-    [Header("Global Color Mapping")]
-    [Tooltip("Global minimum wind magnitude for color mapping (values below this will be clamped to 0)")]
-    public float globalMinWindMagnitude = 0f;
-    [Tooltip("Global maximum wind magnitude for color mapping (values above this will be clamped to 1)")]
-    public float globalMaxWindMagnitude = 20f; // Default to 20 m/s, adjust as needed
-    [Tooltip("Use global magnitude range instead of data-specific range for color mapping")]
-    public bool useGlobalMagnitudeRange = false;
+
     
     [Header("Grid Info")]
     public Vector3Int gridDimensions;
@@ -52,14 +51,23 @@ public class WindFieldStreamlinesCalculator : MonoBehaviour
     public List<List<float>> allMagnitudes = new List<List<float>>();
     public List<List<float>> allNormalizedMagnitudes = new List<List<float>>();
     public List<List<float>> allNormalizedMsl = new List<List<float>>();
+    public List<List<float>> allDirectionChanges = new List<List<float>>(); // Angle changes between sequential segments (in radians)
     public List<float> allAverageMagnitudeNormalizations = new List<float>(); // For texture animation per streamline
     public List<float> allStreamlineLengthMultipliers = new List<float>(); // For texture flow speed normalization
     public List<float> allRandomTextureOffsets = new List<float>(); // Random UV offsets per streamline
+    public List<float> allAverageCurvatures = new List<float>(); // Average curvature per streamline for threshold filtering
+    public List<float> allLowestAltitudes = new List<float>(); // Lowest altitude (Y coordinate) per streamline for trimming
     
     [Header("Normalization Data")]
     private float globalMinMsl = float.MaxValue;
     private float globalMaxMsl = float.MinValue;
     public float maxMagnitude = 1.0f;
+    
+    [Header("Streamline Length Info")]
+    [Tooltip("Minimum streamline length in the current dataset (read-only)")]
+    public float minStreamlineLength = 0f;
+    [Tooltip("Maximum streamline length in the current dataset (read-only)")]
+    public float maxStreamlineLength = 0f;
     
     private Dictionary<Vector3Int, int> gridToIndex = new Dictionary<Vector3Int, int>();
     private Vector3Int[] uniqueGridPositions;
@@ -72,31 +80,58 @@ public class WindFieldStreamlinesCalculator : MonoBehaviour
     [Range(0.1f, 100f)]
     public float simplificationTolerance = 5f;
     
+    [Header("Curvature Threshold Filtering")]
+    [Tooltip("Enable threshold-based filtering to remove straight streamlines")]
+    public bool enableCurvatureThresholdFiltering = false;
+    [Tooltip("Curvature threshold - streamlines below this get filtered")]
+    [Range(0f, 0.5f)]
+    public float curvatureThreshold = 0.1f;
+    [Tooltip("Probability to drop streamlines below threshold (0=never drop, 1=always drop)")]
+    [Range(0f, 1f)]
+    public float dropProbability = 0.7f;
+    
     // Events for when streamlines are updated
     public System.Action<List<List<Vector3>>> OnStreamlinesUpdated;
     
+    private void UpdateStatus(string message)
+    {
+        if (statusText != null)
+        {
+            statusText.text = message;
+        }
+    }
+    
+    private IEnumerator ClearStatusAfterDelay()
+    {
+        yield return new WaitForSeconds(2f);
+        UpdateStatus("");
+        statusText.gameObject.SetActive(false);
+    }
+    
     void Start()
     {
-        if (generateOnStart && dataContainer != null && dataContainer.IsLoaded)
-        {
-            BuildGridStructure();
-            GenerateStreamlines();
-        }
-        else if (generateOnStart)
-        {
-            Debug.LogWarning("Data container not loaded yet. Will try again in Update.");
-        }
+        UpdateStatus("Initializing...");
+        // Simple check - if data is ready, proceed immediately
+        CheckAndGenerate();
     }
     
     void Update()
     {
-        if (dataContainer != null && dataContainer.IsLoaded && gridDimensions == Vector3Int.zero)
+        // Simple check every frame until data is ready
+        CheckAndGenerate();
+    }
+    
+    void CheckAndGenerate()
+    {
+        if (generateOnStart && dataContainer != null && dataContainer.IsLoaded && gridDimensions == Vector3Int.zero)
         {
+            UpdateStatus("Building grid structure...");
             BuildGridStructure();
-            if (generateOnStart)
-            {
-                GenerateStreamlines();
-            }
+            GenerateStreamlines();
+        }
+        else if (generateOnStart && (dataContainer == null || !dataContainer.IsLoaded))
+        {
+            UpdateStatus("Waiting for data container to load...");
         }
     }
     
@@ -166,10 +201,12 @@ public class WindFieldStreamlinesCalculator : MonoBehaviour
     public void GenerateStreamlines()
     {
         Debug.Log("=== GenerateStreamlines called ===");
+        UpdateStatus("Starting streamline generation...");
         
         if (dataContainer == null || !dataContainer.IsLoaded)
         {
             Debug.LogError("Data container is not loaded!");
+            UpdateStatus("Error: Data container not loaded!");
             return;
         }
         
@@ -188,27 +225,15 @@ public class WindFieldStreamlinesCalculator : MonoBehaviour
         {
             Vector2 dataMinMax = dataContainer.magMinMax;
             Debug.Log($"Magnitude range - Data: {dataMinMax.x:F2} to {dataMinMax.y:F2} m/s");
-            if (useGlobalMagnitudeRange)
-            {
-                Debug.Log($"Using global range: {globalMinWindMagnitude:F2} to {globalMaxWindMagnitude:F2} m/s");
-                float globalSpan = globalMaxWindMagnitude - globalMinWindMagnitude;
-                if (globalSpan > 0)
-                {
-                    float dataStartPct = (dataMinMax.x - globalMinWindMagnitude) / globalSpan * 100f;
-                    float dataEndPct = (dataMinMax.y - globalMinWindMagnitude) / globalSpan * 100f;
-                    Debug.Log($"Data will map to {dataStartPct:F1}%-{dataEndPct:F1}% of color range");
-                }
-            }
-            else
-            {
-                Debug.Log("Using data-specific range for color mapping");
-            }
+            // Note: Global magnitude range for color mapping is now handled by WindFieldStreamlinesRenderer
         }
         
         // Clear existing data
         ClearAllStreamlines();
+        UpdateStatus("Clearing existing streamlines...");
         
         // Generate starting positions
+        UpdateStatus("Generating start positions...");
         List<Vector3> startPositions = GenerateStartingPositions();
         
         Debug.Log($"Generated {startPositions.Count} start positions");
@@ -221,6 +246,7 @@ public class WindFieldStreamlinesCalculator : MonoBehaviour
         }
         
         Debug.Log($"Generating {startPositions.Count} streamlines...");
+        UpdateStatus($"Generating {startPositions.Count} streamlines...");
         
         // Generate streamlines for each start position (same as multiple WindStreamlineCalculator instances)
         for (int i = 0; i < startPositions.Count; i++)
@@ -228,18 +254,36 @@ public class WindFieldStreamlinesCalculator : MonoBehaviour
             GenerateSingleStreamline(startPositions[i]);
             
             // Progress update for large numbers
-            //if (i % 100 == 0 && i > 0)
-            //{
-               // Debug.Log($"Generated {i}/{startPositions.Count} streamlines...");
-           // }
+            if (i % 100 == 0 && i > 0)
+            {
+                UpdateStatus($"Generated {i}/{startPositions.Count} streamlines...");
+            }
         }
         
-        //Debug.Log($"=== Generated {allStreamlinePaths.Count} streamlines with total {GetTotalPoints()} points ===");
+        Debug.Log($"=== Generated {allStreamlinePaths.Count} streamlines with total {GetTotalPoints()} points ===");
+        
+        // Calculate min/max streamline lengths
+        CalculateStreamlineLengthRange();
+        
+        // Apply curvature threshold filtering if enabled
+        if (enableCurvatureThresholdFiltering)
+        {
+            ApplyCurvatureThresholdFiltering();
+            Debug.Log($"After curvature threshold filtering: {allStreamlinePaths.Count} streamlines remaining");
+            
+            // Recalculate min/max after filtering
+            CalculateStreamlineLengthRange();
+        }
+        
+        UpdateStatus($"Complete! Generated {allStreamlinePaths.Count} streamlines with {GetTotalPoints()} points");
+        
+        // Clear status message after a brief delay
+        StartCoroutine(ClearStatusAfterDelay());
         
         // Notify listeners
         OnStreamlinesUpdated?.Invoke(allStreamlineWorldCoords);
         
-        //Debug.Log($"OnStreamlinesUpdated event fired with {allStreamlineWorldCoords.Count} streamlines");
+        Debug.Log($"OnStreamlinesUpdated event fired with {allStreamlineWorldCoords.Count} streamlines");
     }
     
     void GenerateSingleStreamline(Vector3 startPosition)
@@ -251,6 +295,7 @@ public class WindFieldStreamlinesCalculator : MonoBehaviour
         List<float> magnitudes = new List<float>();
         List<float> normalizedMagnitudes = new List<float>();
         List<float> normalizedMsl = new List<float>();
+        List<float> directionChanges = new List<float>();
         
         // Get global MSL bounds from data container
         float globalMinMsl = dataContainer.gridMin.y;
@@ -325,6 +370,12 @@ public class WindFieldStreamlinesCalculator : MonoBehaviour
             normalizedMsl.Add(mslNorm);
         }
         
+        // Calculate direction changes between sequential line segments
+        CalculateDirectionChanges(worldCoords, directionChanges);
+        
+        // Calculate average curvature for this streamline
+        float averageCurvature = CalculateAverageCurvature(directionChanges);
+        
         // Calculate average magnitude normalization for texture animation
         float averageMagnitudeNormalization = 0f;
         if (normalizedMagnitudes.Count > 0)
@@ -354,6 +405,16 @@ public class WindFieldStreamlinesCalculator : MonoBehaviour
         // Generate random texture offset for this streamline
         float randomTextureOffset = useRandomTextureOffsets ? Random.Range(0f, randomOffsetRange) : 0f;
         
+        // Calculate lowest altitude for this streamline
+        float lowestAltitude = float.MaxValue;
+        foreach (Vector3 worldPos in worldCoords)
+        {
+            if (worldPos.y < lowestAltitude)
+            {
+                lowestAltitude = worldPos.y;
+            }
+        }
+        
         // Only add streamlines with at least 2 points
         if (path.Count >= 2)
         {
@@ -363,9 +424,12 @@ public class WindFieldStreamlinesCalculator : MonoBehaviour
             allMagnitudes.Add(magnitudes);
             allNormalizedMagnitudes.Add(normalizedMagnitudes);
             allNormalizedMsl.Add(normalizedMsl);
+            allDirectionChanges.Add(directionChanges);
+            allAverageCurvatures.Add(averageCurvature);
             allAverageMagnitudeNormalizations.Add(averageMagnitudeNormalization);
             allStreamlineLengthMultipliers.Add(lengthMultiplier);
             allRandomTextureOffsets.Add(randomTextureOffset);
+            allLowestAltitudes.Add(lowestAltitude);
         }
     }
     
@@ -681,34 +745,8 @@ public class WindFieldStreamlinesCalculator : MonoBehaviour
         
         float interpolatedMagNorm = Mathf.Lerp(c0, c1, fz);
         
-        // Apply global magnitude range remapping if enabled
-        if (useGlobalMagnitudeRange)
-        {
-            return RemapMagnitudeToGlobalRange(interpolatedMagNorm);
-        }
-        
+        // Note: Global magnitude range remapping is now handled by WindFieldStreamlinesRenderer
         return interpolatedMagNorm;
-    }
-    
-    float RemapMagnitudeToGlobalRange(float originalMagNorm)
-    {
-        // Convert the normalized magnitude back to physical magnitude
-        Vector2 dataMinMax = dataContainer.magMinMax;
-        float physicalMagnitude = dataMinMax.x + originalMagNorm * (dataMinMax.y - dataMinMax.x);
-        
-        // Remap to global range
-        float globalRange = globalMaxWindMagnitude - globalMinWindMagnitude;
-        if (globalRange <= 0f)
-        {
-            Debug.LogWarning("Invalid global magnitude range! Max must be greater than min.");
-            return originalMagNorm;
-        }
-        
-        // Clamp to global range and normalize to 0-1
-        float clampedMagnitude = Mathf.Clamp(physicalMagnitude, globalMinWindMagnitude, globalMaxWindMagnitude);
-        float globalNormalizedMagnitude = (clampedMagnitude - globalMinWindMagnitude) / globalRange;
-        
-        return globalNormalizedMagnitude;
     }
     
     float GetMagNormAtGridPoint(int x, int y, int z)
@@ -742,6 +780,43 @@ public class WindFieldStreamlinesCalculator : MonoBehaviour
         );
     }
     
+    void CalculateStreamlineLengthRange()
+    {
+        if (allStreamlineWorldCoords.Count == 0)
+        {
+            minStreamlineLength = 0f;
+            maxStreamlineLength = 0f;
+            return;
+        }
+        
+        List<float> streamlineLengths = new List<float>();
+        
+        // Calculate length for each streamline
+        foreach (var streamline in allStreamlineWorldCoords)
+        {
+            float length = 0f;
+            for (int i = 0; i < streamline.Count - 1; i++)
+            {
+                length += Vector3.Distance(streamline[i], streamline[i + 1]);
+            }
+            streamlineLengths.Add(length);
+        }
+        
+        // Find min/max
+        if (streamlineLengths.Count > 0)
+        {
+            minStreamlineLength = Mathf.Min(streamlineLengths.ToArray());
+            maxStreamlineLength = Mathf.Max(streamlineLengths.ToArray());
+        }
+        else
+        {
+            minStreamlineLength = 0f;
+            maxStreamlineLength = 1f; // Avoid division by zero
+        }
+        
+        Debug.Log($"Streamline lengths - Min: {minStreamlineLength:F2}, Max: {maxStreamlineLength:F2}");
+    }
+    
     public void ClearAllStreamlines()
     {
         allStreamlinePaths.Clear();
@@ -750,12 +825,17 @@ public class WindFieldStreamlinesCalculator : MonoBehaviour
         allMagnitudes.Clear();
         allNormalizedMagnitudes.Clear();
         allNormalizedMsl.Clear();
+        allDirectionChanges.Clear();
+        allAverageCurvatures.Clear();
         allAverageMagnitudeNormalizations.Clear();
         allStreamlineLengthMultipliers.Clear();
         allRandomTextureOffsets.Clear();
+        allLowestAltitudes.Clear();
         
         globalMinMsl = float.MaxValue;
         globalMaxMsl = float.MinValue;
+        minStreamlineLength = 0f;
+        maxStreamlineLength = 0f;
     }
     
     public int GetTotalPoints()
@@ -851,49 +931,143 @@ public class WindFieldStreamlinesCalculator : MonoBehaviour
         return false;
     }
     
-    [ContextMenu("Set Global Range From Current Data")]
-    public void SetGlobalRangeFromCurrentData()
+    void CalculateDirectionChanges(List<Vector3> worldCoords, List<float> directionChanges)
     {
-        if (dataContainer == null || !dataContainer.IsLoaded)
+        directionChanges.Clear();
+        
+        if (worldCoords.Count < 3)
         {
-            Debug.LogWarning("Cannot set global range: data container not loaded");
+            // Not enough points to calculate direction changes
+            for (int i = 0; i < worldCoords.Count; i++)
+            {
+                directionChanges.Add(0f);
+            }
             return;
         }
         
-        Vector2 dataMinMax = dataContainer.magMinMax;
-        globalMinWindMagnitude = dataMinMax.x;
-        globalMaxWindMagnitude = dataMinMax.y;
+        // First point has no previous segment, so direction change is 0
+        directionChanges.Add(0f);
         
-        Debug.Log($"Set global magnitude range from current data: {globalMinWindMagnitude:F2} to {globalMaxWindMagnitude:F2} m/s");
+        // Calculate direction change for each point (except first and last)
+        for (int i = 1; i < worldCoords.Count - 1; i++)
+        {
+            Vector3 prevSegment = (worldCoords[i] - worldCoords[i - 1]).normalized;
+            Vector3 nextSegment = (worldCoords[i + 1] - worldCoords[i]).normalized;
+            
+            // Calculate angle between the two segments
+            float dotProduct = Vector3.Dot(prevSegment, nextSegment);
+            // Clamp to avoid floating point errors
+            dotProduct = Mathf.Clamp(dotProduct, -1f, 1f);
+            
+            // Get the angle in radians and take absolute value
+            float angleRadians = Mathf.Abs(Mathf.Acos(dotProduct));
+            
+            // Normalize to 0-1 range (π radians = 180° = maximum change = 1.0)
+            float normalizedAngle = angleRadians / Mathf.PI;
+            
+            directionChanges.Add(normalizedAngle);
+        }
+        
+        // Last point has no next segment, so direction change is 0
+        directionChanges.Add(0f);
     }
     
-    [ContextMenu("Debug Magnitude Ranges")]
-    public void DebugMagnitudeRanges()
+    float CalculateAverageCurvature(List<float> directionChanges)
     {
-        if (dataContainer == null || !dataContainer.IsLoaded)
+        if (directionChanges.Count == 0) return 0f;
+        
+        float totalCurvature = 0f;
+        int validAngles = 0;
+        
+        // Sum all direction changes (excluding first and last points which are always 0)
+        for (int i = 1; i < directionChanges.Count - 1; i++)
         {
-            Debug.LogWarning("Cannot debug ranges: data container not loaded");
-            return;
+            totalCurvature += directionChanges[i];
+            validAngles++;
         }
         
-        Vector2 dataMinMax = dataContainer.magMinMax;
-        Debug.Log($"=== Magnitude Range Info ===");
-        Debug.Log($"Data range: {dataMinMax.x:F2} to {dataMinMax.y:F2} m/s");
-        Debug.Log($"Global range: {globalMinWindMagnitude:F2} to {globalMaxWindMagnitude:F2} m/s");
-        Debug.Log($"Use global range: {useGlobalMagnitudeRange}");
-        
-        if (useGlobalMagnitudeRange)
-        {
-            float dataSpan = dataMinMax.y - dataMinMax.x;
-            float globalSpan = globalMaxWindMagnitude - globalMinWindMagnitude;
-            Debug.Log($"Data spans {dataSpan:F2} m/s, Global spans {globalSpan:F2} m/s");
-            
-            // Show how much of the global range the data covers
-            float dataStartInGlobal = (dataMinMax.x - globalMinWindMagnitude) / globalSpan;
-            float dataEndInGlobal = (dataMinMax.y - globalMinWindMagnitude) / globalSpan;
-            Debug.Log($"Data covers global range from {dataStartInGlobal:P1} to {dataEndInGlobal:P1}");
-        }
+        // Return average curvature (0 if no valid angles)
+        return validAngles > 0 ? totalCurvature / validAngles : 0f;
     }
+    
+    void ApplyCurvatureThresholdFiltering()
+    {
+        if (allAverageCurvatures.Count == 0) return;
+        
+        // Create lists to store filtered streamlines
+        List<List<Vector3>> filteredPaths = new List<List<Vector3>>();
+        List<List<Vector3>> filteredWorldCoords = new List<List<Vector3>>();
+        List<List<Vector3>> filteredWindVectors = new List<List<Vector3>>();
+        List<List<float>> filteredMagnitudes = new List<List<float>>();
+        List<List<float>> filteredNormalizedMagnitudes = new List<List<float>>();
+        List<List<float>> filteredNormalizedMsl = new List<List<float>>();
+        List<List<float>> filteredDirectionChanges = new List<List<float>>();
+        List<float> filteredAverageCurvatures = new List<float>();
+        List<float> filteredAverageMagnitudeNormalizations = new List<float>();
+        List<float> filteredStreamlineLengthMultipliers = new List<float>();
+        List<float> filteredRandomTextureOffsets = new List<float>();
+        List<float> filteredLowestAltitudes = new List<float>();
+        
+        int originalCount = allStreamlinePaths.Count;
+        int keptCount = 0;
+        int droppedBelowThreshold = 0;
+        
+        // Filter each streamline based on its average curvature
+        for (int i = 0; i < allStreamlinePaths.Count; i++)
+        {
+            float avgCurvature = allAverageCurvatures[i];
+            bool keepStreamline = true;
+            
+            // Check if average curvature is below threshold
+            if (avgCurvature < curvatureThreshold)
+            {
+                // Roll for drop probability
+                if (Random.Range(0f, 1f) < dropProbability)
+                {
+                    keepStreamline = false;
+                    droppedBelowThreshold++;
+                }
+            }
+            
+            if (keepStreamline)
+            {
+                // Keep this streamline
+                filteredPaths.Add(allStreamlinePaths[i]);
+                filteredWorldCoords.Add(allStreamlineWorldCoords[i]);
+                filteredWindVectors.Add(allWindVectors[i]);
+                filteredMagnitudes.Add(allMagnitudes[i]);
+                filteredNormalizedMagnitudes.Add(allNormalizedMagnitudes[i]);
+                filteredNormalizedMsl.Add(allNormalizedMsl[i]);
+                filteredDirectionChanges.Add(allDirectionChanges[i]);
+                filteredAverageCurvatures.Add(allAverageCurvatures[i]);
+                filteredAverageMagnitudeNormalizations.Add(allAverageMagnitudeNormalizations[i]);
+                filteredStreamlineLengthMultipliers.Add(allStreamlineLengthMultipliers[i]);
+                filteredRandomTextureOffsets.Add(allRandomTextureOffsets[i]);
+                filteredLowestAltitudes.Add(allLowestAltitudes[i]);
+                keptCount++;
+            }
+        }
+        
+        // Replace original lists with filtered ones
+        allStreamlinePaths = filteredPaths;
+        allStreamlineWorldCoords = filteredWorldCoords;
+        allWindVectors = filteredWindVectors;
+        allMagnitudes = filteredMagnitudes;
+        allNormalizedMagnitudes = filteredNormalizedMagnitudes;
+        allNormalizedMsl = filteredNormalizedMsl;
+        allDirectionChanges = filteredDirectionChanges;
+        allAverageCurvatures = filteredAverageCurvatures;
+        allAverageMagnitudeNormalizations = filteredAverageMagnitudeNormalizations;
+        allStreamlineLengthMultipliers = filteredStreamlineLengthMultipliers;
+        allRandomTextureOffsets = filteredRandomTextureOffsets;
+        allLowestAltitudes = filteredLowestAltitudes;
+        
+        float keepPercentage = originalCount > 0 ? (float)keptCount / originalCount * 100f : 0f;
+        Debug.Log($"Curvature threshold filtering: kept {keptCount}/{originalCount} streamlines ({keepPercentage:F1}%)");
+        Debug.Log($"Dropped {droppedBelowThreshold} streamlines below threshold {curvatureThreshold:F3} with {dropProbability:F1} probability");
+    }
+    
+    // Note: Global magnitude range functions moved to WindFieldStreamlinesRenderer
     
     List<Vector3> SimplifyLine(List<Vector3> points, float tolerance)
     {
@@ -1020,6 +1194,50 @@ public class WindFieldStreamlinesCalculator : MonoBehaviour
         Debug.Log($"Length difference: {lengthDifferencePercent:F1}%");
         Debug.Log($"Average points per streamline: {totalOriginalPoints / allStreamlinePaths.Count:F1} → {totalSimplifiedPoints / allStreamlinePaths.Count:F1}");
         Debug.Log($"Tolerance: {simplificationTolerance} world units");
+    }
+    
+    [ContextMenu("Debug Direction Changes")]
+    public void DebugDirectionChanges()
+    {
+        if (allDirectionChanges.Count == 0)
+        {
+            Debug.Log("No direction change data available");
+            return;
+        }
+        
+        float totalDirectionChanges = 0f;
+        float maxDirectionChange = 0f;
+        int totalPoints = 0;
+        int sharpTurns = 0; // Count turns > 45 degrees
+        
+        foreach (var directionChangeList in allDirectionChanges)
+        {
+            foreach (float change in directionChangeList)
+            {
+                totalDirectionChanges += change;
+                totalPoints++;
+                
+                if (change > maxDirectionChange)
+                {
+                    maxDirectionChange = change;
+                }
+                
+                // Count sharp turns (> 45 degrees = 0.25 in normalized range)
+                if (change > 0.25f)
+                {
+                    sharpTurns++;
+                }
+            }
+        }
+        
+        float averageDirectionChange = totalPoints > 0 ? totalDirectionChanges / totalPoints : 0f;
+        
+        Debug.Log($"=== Direction Change Stats ===");
+        Debug.Log($"Total streamlines: {allDirectionChanges.Count}");
+        Debug.Log($"Total points: {totalPoints}");
+        Debug.Log($"Average direction change: {averageDirectionChange * 180f:F2}° ({averageDirectionChange:F4} normalized)");
+        Debug.Log($"Maximum direction change: {maxDirectionChange * 180f:F2}° ({maxDirectionChange:F4} normalized)");
+        Debug.Log($"Sharp turns (>45°): {sharpTurns} ({100f * sharpTurns / totalPoints:F1}% of points)");
     }
 
     // Add this new helper method to convert world coordinates back to grid coordinates

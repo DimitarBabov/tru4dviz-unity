@@ -117,7 +117,18 @@ public class WindFieldMeshNc : MonoBehaviour
             float magNorm = dataContainer.mag_norm[i]; // Always use actual magnitude for coloring
 
             Vector3 tipPos = new Vector3(x, msl, y);
-            Vector3 windVec = new Vector3(uNorm, wNorm, vNorm);
+            
+            // Denormalize wind components to get actual physical values for correct direction
+            Vector2 uMinMax = dataContainer.uMinMax;
+            Vector2 vMinMax = dataContainer.vMinMax;
+            Vector2 wMinMax = dataContainer.wMinMax;
+            
+            float uPhysical = uMinMax.x + uNorm * (uMinMax.y - uMinMax.x);
+            float vPhysical = vMinMax.x + vNorm * (vMinMax.y - vMinMax.x);
+            float wPhysical = wMinMax.x + wNorm * (wMinMax.y - wMinMax.x);
+            
+            // Create physical wind vector: (u, w, v) -> (X, Y, Z) in grid space
+            Vector3 windVec = new Vector3(uPhysical, wPhysical, vPhysical);
 
             // Calculate arrow length proportional to actual magnitude
             float maxMagnitude = dataContainer.magMinMax.y; // Get max magnitude from data container
@@ -152,7 +163,9 @@ public class WindFieldMeshNc : MonoBehaviour
                 Debug.Log($"  Grid Cell Width: {gridCellWidth:F3}");
                 Debug.Log($"  Proportional Length: {scaledLength:F3}");
                 Debug.Log($"  Final Scaled Length: {scaledLength:F3}");
-                Debug.Log($"  Wind Vector (u,w,v): ({uNorm:F3}, {wNorm:F3}, {vNorm:F3})");
+                Debug.Log($"  Normalized Wind (u,w,v): ({uNorm:F3}, {wNorm:F3}, {vNorm:F3})");
+                Debug.Log($"  Physical Wind (u,w,v): ({uPhysical:F3}, {wPhysical:F3}, {vPhysical:F3}) m/s");
+                Debug.Log($"  Calculated Magnitude: {windVec.magnitude:F3} m/s (should match original: {mag:F3})");
                 Debug.Log($"  Start Point (tip): {tipPos}");
                 Debug.Log($"  End Point (base): {basePos}");
                 Debug.Log($"  Delta: {delta}");

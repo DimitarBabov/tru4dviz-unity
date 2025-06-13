@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
@@ -48,13 +49,23 @@ public class WindStartStreamlinePoints : MonoBehaviour
     public bool showDebugInfo = true;
     public bool drawGizmos = true;
     
+    [Header("Preferences")]
+    [Tooltip("Set to true to save current settings to preferences (requires app restart to take effect)")]
+    public bool saveToPreferences = false;
+    
     // Cached results
     private List<Vector3> cachedStartPoints = new List<Vector3>();
     private WindFieldStreamlinesCalculator streamlinesCalculator;
     private bool pointsGenerated = false;
     
+    // Preferences constants
+    private const string PREFS_PREFIX = "WindStartStreamlinePoints_";
+    
     void Start()
     {
+        // Load preferences first
+        LoadFromPreferences();
+        
         // Get the streamlines calculator on the same GameObject
         streamlinesCalculator = GetComponent<WindFieldStreamlinesCalculator>();
         if (streamlinesCalculator == null)
@@ -63,18 +74,19 @@ public class WindStartStreamlinePoints : MonoBehaviour
             return;
         }
         
-        // Generate points when data is ready
-        if (streamlinesCalculator.dataContainer != null && streamlinesCalculator.dataContainer.IsLoaded)
-        {
-            GenerateStartPoints();
-        }
+        // Simple check - if data is ready, proceed immediately
+        CheckAndGenerate();
     }
     
     void Update()
     {
-        // Generate points when data becomes available
-        if (!pointsGenerated && streamlinesCalculator != null && 
-            streamlinesCalculator.dataContainer != null && streamlinesCalculator.dataContainer.IsLoaded)
+        // Simple check every frame until points are generated
+        CheckAndGenerate();
+    }
+    
+    void CheckAndGenerate()
+    {
+        if (!pointsGenerated && streamlinesCalculator != null && streamlinesCalculator.dataContainer != null && streamlinesCalculator.dataContainer.IsLoaded)
         {
             GenerateStartPoints();
         }
@@ -486,5 +498,55 @@ public class WindStartStreamlinePoints : MonoBehaviour
         Debug.Log($"World size: {worldSize}");
         Debug.Log($"Wall sampling interval: {wallSamplingInterval}m");
         Debug.Log($"Current cached points: {cachedStartPoints.Count}");
+    }
+    
+    void OnDisable()
+    {
+        if (saveToPreferences)
+        {
+            SaveToPreferences();
+        }
+    }
+    
+    private void SaveToPreferences()
+    {
+        // Save random volume density settings
+        PlayerPrefs.SetFloat(PREFS_PREFIX + "pointsPer100CubicMetersDensity", pointsPer100CubicMetersDensity);
+        PlayerPrefs.SetInt(PREFS_PREFIX + "randomSeedDensity", randomSeedDensity);
+        PlayerPrefs.SetFloat(PREFS_PREFIX + "heightDensityFalloff", heightDensityFalloff);
+        PlayerPrefs.SetFloat(PREFS_PREFIX + "minDensityFraction", minDensityFraction);
+        
+        // Save other settings for completeness
+        PlayerPrefs.SetInt(PREFS_PREFIX + "pointMode", (int)pointMode);
+        PlayerPrefs.SetFloat(PREFS_PREFIX + "wallSamplingInterval", wallSamplingInterval);
+        PlayerPrefs.SetInt(PREFS_PREFIX + "numPointsX", numPointsX);
+        PlayerPrefs.SetInt(PREFS_PREFIX + "numPointsY", numPointsY);
+        PlayerPrefs.SetInt(PREFS_PREFIX + "numPointsZ", numPointsZ);
+        PlayerPrefs.SetFloat(PREFS_PREFIX + "irregularity", irregularity);
+        PlayerPrefs.SetInt(PREFS_PREFIX + "irregularitySeed", irregularitySeed);
+        
+        PlayerPrefs.Save();
+        Debug.Log("WindStartStreamlinePoints settings saved to preferences! Restart app for changes to take effect.");
+    }
+    
+    [ContextMenu("Load from Preferences")]
+    public void LoadFromPreferences()
+    {
+        // Load random volume density settings
+        pointsPer100CubicMetersDensity = PlayerPrefs.GetFloat(PREFS_PREFIX + "pointsPer100CubicMetersDensity", pointsPer100CubicMetersDensity);
+        randomSeedDensity = PlayerPrefs.GetInt(PREFS_PREFIX + "randomSeedDensity", randomSeedDensity);
+        heightDensityFalloff = PlayerPrefs.GetFloat(PREFS_PREFIX + "heightDensityFalloff", heightDensityFalloff);
+        minDensityFraction = PlayerPrefs.GetFloat(PREFS_PREFIX + "minDensityFraction", minDensityFraction);
+        
+        // Load other settings for completeness
+        pointMode = (StartPointMode)PlayerPrefs.GetInt(PREFS_PREFIX + "pointMode", (int)pointMode);
+        wallSamplingInterval = PlayerPrefs.GetFloat(PREFS_PREFIX + "wallSamplingInterval", wallSamplingInterval);
+        numPointsX = PlayerPrefs.GetInt(PREFS_PREFIX + "numPointsX", numPointsX);
+        numPointsY = PlayerPrefs.GetInt(PREFS_PREFIX + "numPointsY", numPointsY);
+        numPointsZ = PlayerPrefs.GetInt(PREFS_PREFIX + "numPointsZ", numPointsZ);
+        irregularity = PlayerPrefs.GetFloat(PREFS_PREFIX + "irregularity", irregularity);
+        irregularitySeed = PlayerPrefs.GetInt(PREFS_PREFIX + "irregularitySeed", irregularitySeed);
+        
+        Debug.Log("WindStartStreamlinePoints settings loaded from preferences!");
     }
 } 

@@ -1,6 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using TMPro;
 
 public class NcDataContainerImgs : DataContainer
 {
@@ -21,6 +23,9 @@ public class NcDataContainerImgs : DataContainer
     public Vector3 gridMax;
     public Vector3 gridCellSize;
     
+    [Header("UI Status")]
+    public TextMeshProUGUI statusText;
+    
     [Header("Wind Statistics")]
     [Tooltip("Average U (eastward) wind component in m/s")]
     public float averageU = 0f;
@@ -31,13 +36,35 @@ public class NcDataContainerImgs : DataContainer
     [Tooltip("Average total wind magnitude in m/s")]
     public float averageMagnitude = 0f;
     
+    [Header("Loading Progress")]
+    [Tooltip("Shows current loading progress (0-1)")]
+    [Range(0f, 1f)]
+    public float loadingProgress = 0f;
+    [Tooltip("Current loading status")]
+    public string loadingStatus = "Not Started";
+    
+    [Header("Performance Settings")]
+    [Tooltip("Maximum time per frame in milliseconds before yielding (lower = more responsive, higher = faster loading)")]
+    [Range(5f, 50f)]
+    public float maxFrameTimeMs = 16f; // Default to ~60fps budget
+    
     private Dictionary<Vector3Int, int> gridToIndex = new Dictionary<Vector3Int, int>();
     private Vector3Int[] uniqueGridPositions;
     private float gridCellWidth;
 
+    private void UpdateStatus(string message)
+    {
+        loadingStatus = message;
+        if (statusText != null)
+        {
+            statusText.text = message;
+        }
+    }
+
     void Start()
     {
-        LoadFromImagesAndJson();
+        UpdateStatus("Initializing data loading...");
+        StartCoroutine(LoadFromImagesAndJsonCoroutine());
     }
 
     [System.Serializable]
@@ -54,8 +81,15 @@ public class NcDataContainerImgs : DataContainer
         public float lon_origin;
     }
 
-    public void LoadFromImagesAndJson()
+    public IEnumerator LoadFromImagesAndJsonCoroutine()
     {
+        loadingProgress = 0f;
+        UpdateStatus("Starting data load...");
+        yield return null; // Allow UI to update
+        
+        System.Diagnostics.Stopwatch frameTimer = new System.Diagnostics.Stopwatch();
+        frameTimer.Start();
+        
         lat.Clear(); lon.Clear(); msl.Clear();
         u_norm.Clear(); v_norm.Clear(); w_norm.Clear();
         mag.Clear(); mag_norm.Clear();
@@ -75,6 +109,16 @@ public class NcDataContainerImgs : DataContainer
         if (subFolder.Contains("high")) prefix = "high_level";
         else if (subFolder.Contains("low")) prefix = "low_level";
 
+        UpdateStatus("Loading images for missing data mesh...");
+        loadingProgress = 0.1f;
+        
+        // Check if we need to yield based on frame time
+        if (frameTimer.ElapsedMilliseconds > maxFrameTimeMs)
+        {
+            yield return null;
+            frameTimer.Restart();
+        }
+
         // First pass: Load ALL available images for missing data mesh (regardless of minLevel/maxLevel)
         List<int> allAvailableLevels = new List<int>();
         for (int level = 0; level <= 50; level++) // Check a wide range of possible levels
@@ -87,9 +131,25 @@ public class NcDataContainerImgs : DataContainer
                 levelImages.Add(tex);
                 Debug.Log($"Loaded image for level {level} (missing data mesh)");
             }
+            
+            // Yield only if we've spent too much time in this frame
+            if (frameTimer.ElapsedMilliseconds > maxFrameTimeMs)
+            {
+                yield return null;
+                frameTimer.Restart();
+            }
         }
         
         Debug.Log($"Loaded {levelImages.Count} images for missing data mesh from levels: [{string.Join(", ", allAvailableLevels)}]");
+
+        UpdateStatus("Processing wind data...");
+        loadingProgress = 0.3f;
+        
+        if (frameTimer.ElapsedMilliseconds > maxFrameTimeMs)
+        {
+            yield return null;
+            frameTimer.Restart();
+        }
 
         // Second pass: Process wind data ONLY for specified level range (minLevel to maxLevel)
         bool originSet = false;
@@ -100,15 +160,27 @@ public class NcDataContainerImgs : DataContainer
         
         Debug.Log($"Processing wind data for levels {minLevel} to {maxLevel}");
         
+        int totalLevels = maxLevel - minLevel + 1;
+        int processedLevels = 0;
+        
         for (int level = minLevel; level <= maxLevel; level++)
         {
             Debug.Log($"Processing wind data for level {level}");
+            UpdateStatus($"Processing level {level}...");
+            loadingProgress = 0.3f + (processedLevels / (float)totalLevels) * 0.5f;
+            
+            if (frameTimer.ElapsedMilliseconds > maxFrameTimeMs)
+            {
+                yield return null;
+                frameTimer.Restart();
+            }
             
             string metaPath = subFolder + "/" + prefix + level + "_meta";
             TextAsset metaJson = Resources.Load<TextAsset>(metaPath);
             if (metaJson == null) 
             {
                 Debug.LogWarning($"No metadata found for level {level}, skipping wind data processing");
+                processedLevels++;
                 continue;
             }
             
@@ -132,6 +204,7 @@ public class NcDataContainerImgs : DataContainer
             if (tex == null) 
             {
                 Debug.LogWarning($"No image found for level {level}, skipping wind data processing");
+                processedLevels++;
                 continue;
             }
             
@@ -195,9 +268,26 @@ public class NcDataContainerImgs : DataContainer
                     y_from_origin.Add(y_from);
                     msl.Add(altVal);
                 }
+                
+                // Yield only if we've spent too much time in this frame (check every row)
+                if (frameTimer.ElapsedMilliseconds > maxFrameTimeMs)
+                {
+                    yield return null;
+                    frameTimer.Restart();
+                }
             }
             
             Debug.Log($"Level {level} processed: {validPixels} valid pixels, {skippedPixels} skipped (missing data)");
+            processedLevels++;
+        }
+
+        UpdateStatus("Normalizing data...");
+        loadingProgress = 0.8f;
+        
+        if (frameTimer.ElapsedMilliseconds > maxFrameTimeMs)
+        {
+            yield return null;
+            frameTimer.Restart();
         }
         
         // Now normalize for visualization (these will be used for direction and coloring)
@@ -214,6 +304,13 @@ public class NcDataContainerImgs : DataContainer
             w_norm.Add(wRange > 0 ? (tempW[i] - wGlobalMin) / wRange : 0.0f);
             mag.Add(tempMag[i]); // Store original magnitude values
             mag_norm.Add(magRange > 0 ? (tempMag[i] - magGlobalMin) / magRange : 0.5f);
+            
+            // Yield only if we've spent too much time in this frame (check every 10000 iterations)
+            if (i % 10000 == 0 && frameTimer.ElapsedMilliseconds > maxFrameTimeMs)
+            {
+                yield return null;
+                frameTimer.Restart();
+            }
         }
         
         uMinMax = new Vector2(uGlobalMin, uGlobalMax);
@@ -263,16 +360,45 @@ public class NcDataContainerImgs : DataContainer
                 Debug.Log($"  Level {level}: {average:F3} m/s (from {magnitudes.Count} data points)");
             }
         }
+
+        UpdateStatus("Building grid structure...");
+        loadingProgress = 0.9f;
+        
+        if (frameTimer.ElapsedMilliseconds > maxFrameTimeMs)
+        {
+            yield return null;
+            frameTimer.Restart();
+        }
+        
+        // Build grid structure using metadata
+        yield return StartCoroutine(BuildGridStructureCoroutine());
         
         IsLoaded = true;
         
-        // Build grid structure using metadata
-        BuildGridStructure();
+        UpdateStatus("Data loading complete! Generating visualizations...");
+        loadingProgress = 1f;
+        yield return null;
+        
+        // Clear status message after a brief delay
+        yield return new WaitForSeconds(2f);
+        UpdateStatus("");
+        statusText.gameObject.SetActive(false);
+        
+        Debug.Log("Data loading completed successfully!");
     }
     
-    void BuildGridStructure()
+    public void LoadFromImagesAndJson()
     {
-        if (levelImages.Count == 0) return;
+        // Keep the old method for backward compatibility, but use coroutine
+        StartCoroutine(LoadFromImagesAndJsonCoroutine());
+    }
+    
+    IEnumerator BuildGridStructureCoroutine()
+    {
+        System.Diagnostics.Stopwatch frameTimer = new System.Diagnostics.Stopwatch();
+        frameTimer.Start();
+        
+        if (levelImages.Count == 0) yield break;
         
         // Use metadata from first level to get grid structure
         string prefix = "mid_level";
@@ -292,7 +418,7 @@ public class NcDataContainerImgs : DataContainer
             }
         }
         
-        if (firstMeta == null) return;
+        if (firstMeta == null) yield break;
         
         // Collect altitude ranges across all levels
         float globalAltMin = float.MaxValue;
@@ -320,6 +446,13 @@ public class NcDataContainerImgs : DataContainer
                     maxLevelAltitude = meta.altitude;
                 }
             }
+            
+            // Yield only if we've spent too much time in this frame
+            if (frameTimer.ElapsedMilliseconds > maxFrameTimeMs)
+            {
+                yield return null;
+                frameTimer.Restart();
+            }
         }
         
         // Set grid bounds: [min_x_from_origin, alt_min, min_y_from_origin] (Unity: X, Y=altitude, Z)
@@ -345,7 +478,7 @@ public class NcDataContainerImgs : DataContainer
         gridCellWidth = gridCellSize.x;
         
         // Build mapping from grid coordinates to data indices
-        BuildGridToIndexMapping();
+        yield return StartCoroutine(BuildGridToIndexMappingCoroutine());
         
         Debug.Log($"Grid bounds: {gridMin} to {gridMax}");
         Debug.Log($"Grid dimensions: {gridDimensions}");
@@ -353,8 +486,17 @@ public class NcDataContainerImgs : DataContainer
         Debug.Log($"Grid cell width: {gridCellWidth:F3}");
     }
     
-    void BuildGridToIndexMapping()
+    void BuildGridStructure()
     {
+        // Keep the old method for backward compatibility, but use coroutine
+        StartCoroutine(BuildGridStructureCoroutine());
+    }
+    
+    IEnumerator BuildGridToIndexMappingCoroutine()
+    {
+        System.Diagnostics.Stopwatch frameTimer = new System.Diagnostics.Stopwatch();
+        frameTimer.Start();
+        
         gridToIndex.Clear();
         uniqueGridPositions = new Vector3Int[x_from_origin.Count];
         
@@ -376,9 +518,24 @@ public class NcDataContainerImgs : DataContainer
             {
                 gridToIndex[gridPos] = i;
             }
+            
+            // Yield only if we've spent too much time in this frame (check every 25000 iterations)
+            if (i % 25000 == 0 && frameTimer.ElapsedMilliseconds > maxFrameTimeMs)
+            {
+                yield return null;
+                frameTimer.Restart();
+            }
         }
         
         Debug.Log($"Grid structure built: {gridDimensions} dimensions, cell width: {gridCellWidth:F3}");
         Debug.Log($"Grid bounds: {gridMin} to {gridMax}");
     }
+    
+    void BuildGridToIndexMapping()
+    {
+        // Keep the old method for backward compatibility, but use coroutine
+        StartCoroutine(BuildGridToIndexMappingCoroutine());
+    }
+
+
 } 

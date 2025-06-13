@@ -246,6 +246,18 @@ public class WindStreamlineMeshRenderer : MonoBehaviour
             smoothedDirections.Add(direction);
         }
         
+        // Pre-calculate cumulative distances for distance-based UVs
+        List<float> cumulativeDistances = new List<float>();
+        float totalLength = 0f;
+        cumulativeDistances.Add(0f); // First point is at distance 0
+        
+        for (int i = 1; i < currentPath.Count; i++)
+        {
+            float segmentLength = Vector3.Distance(currentPath[i - 1], currentPath[i]);
+            totalLength += segmentLength;
+            cumulativeDistances.Add(totalLength);
+        }
+        
         // Create quads between each pair of points
         for (int i = 0; i < currentPath.Count - 1; i++)
         {
@@ -297,9 +309,9 @@ public class WindStreamlineMeshRenderer : MonoBehaviour
             // Calculate combined animation speed: magnitude * length multiplier
             float combinedAnimationSpeed = pathAvgMagNorm * pathLengthMultiplier;
             
-            // Simple UV coordinates for billboard positioning and texture animation
-            float segmentU1 = (float)i / (currentPath.Count - 1); // Start of segment (0 to 1 along the path)
-            float segmentU2 = (float)(i + 1) / (currentPath.Count - 1); // End of segment
+            // Distance-based UV coordinates for proper texture flow (same as WindFieldStreamlinesRenderer)
+            float segmentU1 = totalLength > 0 ? cumulativeDistances[i] / totalLength : 0f; // Start of segment based on distance
+            float segmentU2 = totalLength > 0 ? cumulativeDistances[i + 1] / totalLength : 0f; // End of segment based on distance
             
             // Create quad vertices - shader will handle billboard positioning
             int baseIndex = vertices.Count;

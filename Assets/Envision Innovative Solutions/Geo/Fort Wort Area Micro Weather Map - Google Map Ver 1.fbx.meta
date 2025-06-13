@@ -1,0 +1,2444 @@
+fileFormatVersion: 2
+guid: 14230daccb2214e4e97cd1a71ed44d78
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF
+    second: {fileID: 2100000, guid: 43664ca5b34e7844da421da8f8f3ec04, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF1
+    second: {fileID: 2100000, guid: 45f1c86a8bf40de4fa6b8d91556f8ec4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF10
+    second: {fileID: 2100000, guid: a12fe3074dba0d342828460c73da3ca1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF100
+    second: {fileID: 2100000, guid: 714a700f07498114abd8616f7a824001, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF101
+    second: {fileID: 2100000, guid: cfdf4cf4b561e604cbf3f266718d8857, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF102
+    second: {fileID: 2100000, guid: 5e004934fcb3ac041acd019692892355, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF103
+    second: {fileID: 2100000, guid: e7d6a0f5ee2545e41862ce1e2cd51805, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF104
+    second: {fileID: 2100000, guid: c4c73edf9b82c0b469155e6b5e71b706, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF105
+    second: {fileID: 2100000, guid: 66771e5d2b60cac42bc0fb347255d0d2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF106
+    second: {fileID: 2100000, guid: f5ddc4476fc2f5f4a8bc1c00848f7c12, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF107
+    second: {fileID: 2100000, guid: 9dab223beb71c2e4db6e39e41a521dbc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF108
+    second: {fileID: 2100000, guid: be1206ce65dbb6441aba52a4d9fded6b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF109
+    second: {fileID: 2100000, guid: 7c8911617e8ce4f49ab1176678616574, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF11
+    second: {fileID: 2100000, guid: 9f64510bd735ed245bd93cd7f882311a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF110
+    second: {fileID: 2100000, guid: d8a95e7b1f48cd8428b214c7464100e8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF111
+    second: {fileID: 2100000, guid: 1a4c81ded499a12418282a517449621c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF112
+    second: {fileID: 2100000, guid: 3696ae8900c45d34cb558421c1f87b18, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF113
+    second: {fileID: 2100000, guid: 037ae6ca421d8ad448258e0ef2046b40, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF114
+    second: {fileID: 2100000, guid: fbe5be4c10782444fb6897c135c6d1fb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF115
+    second: {fileID: 2100000, guid: bc8908561dbb0c94ea26624cb20ea1e5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF116
+    second: {fileID: 2100000, guid: 0e037107e6d877a4bb9eded7dacfab6a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF117
+    second: {fileID: 2100000, guid: c6e5e36c0a6d09d4ea3f68bbcb070a47, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF118
+    second: {fileID: 2100000, guid: f25513f39da999148b9dbd3eac5b4a46, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF119
+    second: {fileID: 2100000, guid: c9edd73555325ba41a7a26c2274c84b6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF12
+    second: {fileID: 2100000, guid: 2f293a0b6ced6294bb72a8543337826e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF120
+    second: {fileID: 2100000, guid: cf65590bac41e164baa517790974a6eb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF121
+    second: {fileID: 2100000, guid: 901444c0b4c96234fa6e5d15a43ab903, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF122
+    second: {fileID: 2100000, guid: 50a29d84f34ee4145a10baedab09c1f2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF123
+    second: {fileID: 2100000, guid: 9fabf0ead548e9e4180b1ce2cc818e90, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF124
+    second: {fileID: 2100000, guid: f5a93b2a129a52a4e912ad77c38c70d3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF125
+    second: {fileID: 2100000, guid: cd1cb3788e899e34db58d7ab9286b08d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF127
+    second: {fileID: 2100000, guid: d5a16b7c85184104eb51a0a6b12fd906, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF128
+    second: {fileID: 2100000, guid: 096b0b7781cfd2444808f5e00e6f2994, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF129
+    second: {fileID: 2100000, guid: e1fa6e95d0253b24ea85004ca2ca5668, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF13
+    second: {fileID: 2100000, guid: daba0d742cd82614c89a432ccc1dbe60, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF130
+    second: {fileID: 2100000, guid: 33eebeb9773a5f54d87afa29e9d11349, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF131
+    second: {fileID: 2100000, guid: 5d39ed3c14dbff14b8cca5ba76b5bc3e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF132
+    second: {fileID: 2100000, guid: 9ab2cc5e3bd7ff14aad894ab724fbac9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF133
+    second: {fileID: 2100000, guid: d5d8e8becd1db7844934bf4e01d1ab4a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF134
+    second: {fileID: 2100000, guid: b599f9b66f0fb584cb3c502b4e4ccac3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF135
+    second: {fileID: 2100000, guid: 29a321e3032b68142a6f6808187e1695, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF136
+    second: {fileID: 2100000, guid: 2d38d0c1662307b41b972a659067a056, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF137
+    second: {fileID: 2100000, guid: 1470d3e15df27fe46a5b04d34cd03bc6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF138
+    second: {fileID: 2100000, guid: 70894d7982dd14140a2572bec979d3d7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF139
+    second: {fileID: 2100000, guid: 6bfd18d4dea6e004b984cc3f1b733f4f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF14
+    second: {fileID: 2100000, guid: f7916f355e2f1004fb74ae6d9411b31c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF140
+    second: {fileID: 2100000, guid: 3cb91ec2a8324ff4390c1ec5a46a4923, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF141
+    second: {fileID: 2100000, guid: 494e80fa57f4dda44ab46ad2fffc9ef9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF142
+    second: {fileID: 2100000, guid: fd8bb157f03cd8245b2a06ddab7f5471, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF143
+    second: {fileID: 2100000, guid: 9deb3b1f81107474188e0c403685b16f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF144
+    second: {fileID: 2100000, guid: ed62e94e9ac6d0d4d8aaaa18bea53f3e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF145
+    second: {fileID: 2100000, guid: 62c50d942e3b9e14184a5bd87386e95e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF146
+    second: {fileID: 2100000, guid: fdfd2ce014a0e87429aec6c50c7fc154, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF147
+    second: {fileID: 2100000, guid: 8b0fb2fec55fb48428f456de956c7eef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF148
+    second: {fileID: 2100000, guid: 3db15fb96cd90114c82ecafb8b7eb39a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF149
+    second: {fileID: 2100000, guid: d38933ed54da49543a9482016930aa71, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF15
+    second: {fileID: 2100000, guid: fecaf57cce79ba44f95e69dc6d09dae4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF150
+    second: {fileID: 2100000, guid: 1950e5664c02c604f8e1556af87f65c0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF151
+    second: {fileID: 2100000, guid: cae074a02fa0d5546a5ee1c30eeb3981, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF152
+    second: {fileID: 2100000, guid: 30eae3fb1f58f9c419313d96aea39fea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF153
+    second: {fileID: 2100000, guid: 0217d6e7be21baa439de1902faca5fb2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF154
+    second: {fileID: 2100000, guid: 1d7f5838de6620a4f9c0d617dc70a25f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF155
+    second: {fileID: 2100000, guid: 85bb80c3925805f45bc231dc119a4ada, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF156
+    second: {fileID: 2100000, guid: 9559bc49ade65e141a8e8ddbbe281cef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF157
+    second: {fileID: 2100000, guid: 51d2e64a1964eaa409301ddcfeddb5fc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF158
+    second: {fileID: 2100000, guid: 1fc788eba3c80fb40905cfcbfb00600b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF159
+    second: {fileID: 2100000, guid: caaef83c406a3114a8e3e59330e46672, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF16
+    second: {fileID: 2100000, guid: 67daf28c9b3bd884d9e0d551d800bed3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF160
+    second: {fileID: 2100000, guid: 83017f3181d6a0f48a17b03701fefb39, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF161
+    second: {fileID: 2100000, guid: 0edcf6ed6df9f834e89f2524be304397, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF162
+    second: {fileID: 2100000, guid: 3be472381d41d9c4db3fc19ac324e4c7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF163
+    second: {fileID: 2100000, guid: e572951f470ffbe4d92753f6cc63a241, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF164
+    second: {fileID: 2100000, guid: f17077a6399d2904d83b4f555557bbab, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF165
+    second: {fileID: 2100000, guid: b766672253e77ee46a238d571f15dc7a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF166
+    second: {fileID: 2100000, guid: cfb66acc0140cd24ebb2551b118e833b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF167
+    second: {fileID: 2100000, guid: a36a2116d51d4864ebf10e6917093fd7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF168
+    second: {fileID: 2100000, guid: 2511e385d7b60f541a5d05cec75d7a7a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF169
+    second: {fileID: 2100000, guid: 679ac44c4556b5f4bb7eabf92b12fc96, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF17
+    second: {fileID: 2100000, guid: ba41d9255cd059d4ebf6bb4066da5829, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF170
+    second: {fileID: 2100000, guid: ec3985f5ed90318449ba962a2bfce6b9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF171
+    second: {fileID: 2100000, guid: 7ffe1cc834288084fa08870f096e20f0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF172
+    second: {fileID: 2100000, guid: a920a09d32efd2d4391acc132f2d188e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF173
+    second: {fileID: 2100000, guid: 67dc0ee4bebace946923b170cbb9f88b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF174
+    second: {fileID: 2100000, guid: 61c3d39f35d1a6e4099e7493582ef497, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF175
+    second: {fileID: 2100000, guid: ecebe31a138d4d84db47283b5e7019ef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF176
+    second: {fileID: 2100000, guid: 30a5390a6b730cc4ab4ca0cafd56b32d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF177
+    second: {fileID: 2100000, guid: 24a04bdaa2e81814f864ec172cba587d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF178
+    second: {fileID: 2100000, guid: f35e4ff65611f9f4faa0a81db4987b4c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF179
+    second: {fileID: 2100000, guid: 9912e2a03db996a4586b914bb9a60bf3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF18
+    second: {fileID: 2100000, guid: b6449b2932b839546b6feeb1de5bbe7f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF180
+    second: {fileID: 2100000, guid: 4b777401613cd7742a9befec11e0fc60, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF181
+    second: {fileID: 2100000, guid: fcd3b1f62ed933449b77188e323c9ef8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF182
+    second: {fileID: 2100000, guid: 33d7002dae17492468512471ac426643, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF183
+    second: {fileID: 2100000, guid: f6382936f3aa0dd4e8f188175339b2a6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF184
+    second: {fileID: 2100000, guid: 16fee5ef5e6950f4b8079f6359c60aa9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF185
+    second: {fileID: 2100000, guid: e3484f2e9ed4f0c42bcc3ec237996f53, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF186
+    second: {fileID: 2100000, guid: 5eb55152a93decc40960091d88d8e837, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF187
+    second: {fileID: 2100000, guid: 20f512962a088704a91d91027a94211b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF188
+    second: {fileID: 2100000, guid: 801b5b8474efbc6489922c5e0fa5d0fe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF189
+    second: {fileID: 2100000, guid: 31abaacfc24a065409c21a817b572b20, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF19
+    second: {fileID: 2100000, guid: 780e2baa1405b894fb9e191ec413698b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF190
+    second: {fileID: 2100000, guid: ef3a32ccf06d85645b43bbf0da9350fa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF191
+    second: {fileID: 2100000, guid: 3b8a1975801022b43bbc0fcbc5a77876, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF192
+    second: {fileID: 2100000, guid: b89099fa1d55acb458a4428b5e381f87, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF193
+    second: {fileID: 2100000, guid: 283a124e9d2a7c345a592bee38137e00, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF194
+    second: {fileID: 2100000, guid: 1335647fb4f2b024fa8f45c861f80d09, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF195
+    second: {fileID: 2100000, guid: 68ea186d1ed99f541bd3f2902eb7c92c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF196
+    second: {fileID: 2100000, guid: a14cb60adad712e4ea028ec07ea7b383, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF197
+    second: {fileID: 2100000, guid: 2cd3b61d480e3bc4d929bdcdef566bba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF198
+    second: {fileID: 2100000, guid: 6469666b61345cd48bd13307c0cca158, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF199
+    second: {fileID: 2100000, guid: a900fd05d0d07ef418a83719b39bc5a2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF2
+    second: {fileID: 2100000, guid: 8ac22a553f9e1d44a99446b6bc79027a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF20
+    second: {fileID: 2100000, guid: 5dc21801c3a84eb47aed7307794a4b29, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF200
+    second: {fileID: 2100000, guid: 8623eb61d974b9641bc56f1b716217ef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF201
+    second: {fileID: 2100000, guid: 4d5837f5970d7d04e9bcffc2fe66c8e6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF202
+    second: {fileID: 2100000, guid: f4f78c01842aa1449bca487e60bae07b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF203
+    second: {fileID: 2100000, guid: 9398840564c685442a8bedfcf3e1bc63, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF204
+    second: {fileID: 2100000, guid: 547a0da25090755468d2166c12a9a303, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF205
+    second: {fileID: 2100000, guid: d51d22fcc2d34594daa4fc8bf573aacf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF206
+    second: {fileID: 2100000, guid: c1c9a37fde5f53e43a2f17bf9c2a9310, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF207
+    second: {fileID: 2100000, guid: 21b55f31ef5c9a746b4a399bc8ef2d50, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF208
+    second: {fileID: 2100000, guid: 811ae4e6ec50e7d449c6c7cdcd4e3f51, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF209
+    second: {fileID: 2100000, guid: 062fcc74c59c86b4a98e97733b012f22, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF21
+    second: {fileID: 2100000, guid: 92082cb09eff6d647aee7b96eca079e7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF210
+    second: {fileID: 2100000, guid: 8bc00306f15757d40ab2b97be5b12ac1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF211
+    second: {fileID: 2100000, guid: 0f7e6e6ff54aa1e4895d2fd8e7386c7e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF212
+    second: {fileID: 2100000, guid: e9221fc4d742bce4a963240b85f8ccda, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF213
+    second: {fileID: 2100000, guid: 7d5d4f757c5e2594daab953e1ed017be, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF214
+    second: {fileID: 2100000, guid: ff4f91951a585d74cbe0d366c8596706, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF215
+    second: {fileID: 2100000, guid: 7be948be1810d54448fc804e362a6b12, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF216
+    second: {fileID: 2100000, guid: b1935754cd5a1074b82f1d870a17c08d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF217
+    second: {fileID: 2100000, guid: d639517dd870e584a85889719c5ceee0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF218
+    second: {fileID: 2100000, guid: 724bd62aceacf0547a8ae61967b5feb5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF219
+    second: {fileID: 2100000, guid: 1870bbd436688454ca6ef805ddd13f02, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF22
+    second: {fileID: 2100000, guid: 4e75f71516f640f4bbc837e342a25f6a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF220
+    second: {fileID: 2100000, guid: 61be766d7dee7d140bbeddaca828cd5c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF221
+    second: {fileID: 2100000, guid: 652f91f1a1d9d124fb07190e035d8011, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF222
+    second: {fileID: 2100000, guid: c36ef165ca3585f42a49b4a7916c38e3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF223
+    second: {fileID: 2100000, guid: 02eabdd580ce8874aa98b6119708620f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF224
+    second: {fileID: 2100000, guid: 1423647cb1719114b9be05e842f96db9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF225
+    second: {fileID: 2100000, guid: 69fd3c365dd69004f9383e2b8364a103, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF226
+    second: {fileID: 2100000, guid: f212636ccf1f50743aa3452805eee540, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF227
+    second: {fileID: 2100000, guid: 483fdc2077ab88d4c862df3c603da51e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF228
+    second: {fileID: 2100000, guid: 6950eee3ae3cefe4682b3c89a6bb24f6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF229
+    second: {fileID: 2100000, guid: 15cdd8937643cb14bac3b43388d408d8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF23
+    second: {fileID: 2100000, guid: a577c63d22fa5e846be49ca9cd92550a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF230
+    second: {fileID: 2100000, guid: 6c9d79ccb076c0740a2b2acdc7dba626, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF231
+    second: {fileID: 2100000, guid: 392e5af36e15508488bd1b385935895a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF232
+    second: {fileID: 2100000, guid: 40f63b25a7ab2094da7c4e24f6c4f407, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF233
+    second: {fileID: 2100000, guid: a912136e5126ec24a9520882a297fba9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF234
+    second: {fileID: 2100000, guid: 7b808897f4d127a4f869cc5ae4525760, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF235
+    second: {fileID: 2100000, guid: 84ef5dac4b8edbb4bac5af673604cdea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF236
+    second: {fileID: 2100000, guid: c557b146c8fa7a44781ace7471651792, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF237
+    second: {fileID: 2100000, guid: a73383cfc2531204bbf9f39549b979b3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF238
+    second: {fileID: 2100000, guid: 69e6ea6584dc59741bcfffee39a28355, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF239
+    second: {fileID: 2100000, guid: 80b0ca836d3e8ee42b2a649d0d95944f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF24
+    second: {fileID: 2100000, guid: 6e0c94868651d694da948c8e1ad5daa5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF240
+    second: {fileID: 2100000, guid: 00cecb548dfc982479abdd1e26b7a6b0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF241
+    second: {fileID: 2100000, guid: 337e1d9c2984c754a8638f79ff78676e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF242
+    second: {fileID: 2100000, guid: 29701e5e3f4b30e489945dedd8753c10, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF243
+    second: {fileID: 2100000, guid: cf97f7243e1abb54187de38c498505be, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF244
+    second: {fileID: 2100000, guid: 287eebf0b4005a54a8a83f34ba5d84b0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF245
+    second: {fileID: 2100000, guid: 959c1f19dbb6c1b4fa3651e7ba012a0d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF246
+    second: {fileID: 2100000, guid: 4822b47ead4018146a16421ed7d800a5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF247
+    second: {fileID: 2100000, guid: aa1ab19764612384f91be1e59abd54ca, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF248
+    second: {fileID: 2100000, guid: 426d181c669b8d6419898e7f2a613118, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF249
+    second: {fileID: 2100000, guid: c79cc29c9da98d143b179de68802ebd6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF25
+    second: {fileID: 2100000, guid: cead81b320fd3fd48adc840a0108a683, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF250
+    second: {fileID: 2100000, guid: 3a83cdf39555e304c8adadf7ed3b5335, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF251
+    second: {fileID: 2100000, guid: 8648cbf0017f8de499f2462492ac44f6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF252
+    second: {fileID: 2100000, guid: 7dd5f954ccfe7ed478bd3cf751e1fd1f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF253
+    second: {fileID: 2100000, guid: 6d5b0a82942050f47b7fb5ddcd0b207f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF254
+    second: {fileID: 2100000, guid: 2efc858527eefb04f870fa642244ec8d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF255
+    second: {fileID: 2100000, guid: 9116240082821fa44974496c6646e1f1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF256
+    second: {fileID: 2100000, guid: 95261dd767c197940ad50985d24b41f2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF257
+    second: {fileID: 2100000, guid: 35b1c3a7b08a8674d8e85d2e084e7b4e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF258
+    second: {fileID: 2100000, guid: bf4f5823740c4e8428fbb694c4a84f9a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF259
+    second: {fileID: 2100000, guid: 149e32ce361c32c438dbabc731c4bd8b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF26
+    second: {fileID: 2100000, guid: d806b12e9f9150f449382ba14c72e6ec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF260
+    second: {fileID: 2100000, guid: de7d7aa6345dc4c4aa21124ff0fa85a4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF261
+    second: {fileID: 2100000, guid: 88c21ae945dd61b4a8d831e8b61f6c44, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF262
+    second: {fileID: 2100000, guid: 3ff9e632dd45b3f4ebd865f66f750226, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF263
+    second: {fileID: 2100000, guid: 6387a421176e6be4697e68733cc9a648, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF264
+    second: {fileID: 2100000, guid: 3bee7deb3ddb9fe419ce56f7f8b32bb5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF265
+    second: {fileID: 2100000, guid: fd12ddf62f51a89429375ce8d0977f6e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF266
+    second: {fileID: 2100000, guid: dbefea0010edd3349a2d37ce0e2215bc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF267
+    second: {fileID: 2100000, guid: 109d7c8042bff2e49b56354eaf5fef46, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF268
+    second: {fileID: 2100000, guid: 6fec2b9e75116654aa9271db1b9944ed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF269
+    second: {fileID: 2100000, guid: e87d0611a8fe559429353c7655da9d19, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF27
+    second: {fileID: 2100000, guid: db0840d8f736ad443b8403f49ce2da0f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF270
+    second: {fileID: 2100000, guid: 3f473ad3b145f1b48a6327d7198fd386, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF271
+    second: {fileID: 2100000, guid: 90fb2ff375b016945b51f30832eb356c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF272
+    second: {fileID: 2100000, guid: c698e5dcfe2467f4cbd9a9904291d753, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF273
+    second: {fileID: 2100000, guid: 7adc09aab4eb7044883dcfcd690bacb0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF274
+    second: {fileID: 2100000, guid: 786ed297e752add46a86c4a6293ddbc3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF275
+    second: {fileID: 2100000, guid: f00d0fe417e34964f98b42a9ea64f6bf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF276
+    second: {fileID: 2100000, guid: ed76da06510c72c46a9d1a16b9a4ff97, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF277
+    second: {fileID: 2100000, guid: 9e8adc6252ed0f145849e507775d892d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF278
+    second: {fileID: 2100000, guid: 2375d3b4be19dcf498baf540776dd767, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF279
+    second: {fileID: 2100000, guid: a074e3f0351bf41468a7e8d790813ad3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF28
+    second: {fileID: 2100000, guid: 5302e523f347ce54c9229a30c6f74397, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF280
+    second: {fileID: 2100000, guid: 69681c5d260fa1449b7c5df58eaa5dd8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF281
+    second: {fileID: 2100000, guid: 2e17defb90395414e8b95361c897ec91, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF282
+    second: {fileID: 2100000, guid: 9a3b3009a485ba94aa5e67a120994c20, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF283
+    second: {fileID: 2100000, guid: 917b1794bc6110f40a9371090bdf02a4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF284
+    second: {fileID: 2100000, guid: f49415ec9b1007d489fcf254f5e4e988, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF285
+    second: {fileID: 2100000, guid: b3d70d9c3c1e163489112fe7248fc8a8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF286
+    second: {fileID: 2100000, guid: 4c287638d4af9bd41a999aadc5420a1d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF287
+    second: {fileID: 2100000, guid: e6cac731707c466428fb4a25a2b67726, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF288
+    second: {fileID: 2100000, guid: 48965ebd9b69bb940806bfc64b75765b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF289
+    second: {fileID: 2100000, guid: 62122afe14b40ba489a1fb51723554f6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF29
+    second: {fileID: 2100000, guid: 1bf5570214380e34f838a6cf3c19cce7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF290
+    second: {fileID: 2100000, guid: 8a33d309a586eb642ab3cd7186979db6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF291
+    second: {fileID: 2100000, guid: a80f7abe6339ef949852b0979431cf6e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF292
+    second: {fileID: 2100000, guid: c61a681487a09e4469ce16cb43fd4c4a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF293
+    second: {fileID: 2100000, guid: 6d4f3c33c29d33741878b2e0eefcacbb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF294
+    second: {fileID: 2100000, guid: 3021eab717910c047897eb826772023c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF296
+    second: {fileID: 2100000, guid: e7a3831d29c13db47ae6938f541f5827, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF297
+    second: {fileID: 2100000, guid: ec4e09042d8c3114aa9da45d9c18edcf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF298
+    second: {fileID: 2100000, guid: 0b9dfbc5d81ce6743ab3442c65454686, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF299
+    second: {fileID: 2100000, guid: f457ccba1f1235c48b9632a6b65ad566, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF3
+    second: {fileID: 2100000, guid: 9b89a06b2473f6542a2df57ab16896c4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF30
+    second: {fileID: 2100000, guid: 12904aa4f94412a4cb3ab454f0c7d78d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF300
+    second: {fileID: 2100000, guid: bd5aed1bebad2c4459b8938af1d3e791, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF301
+    second: {fileID: 2100000, guid: c97913e153684b94ebf78b79249532a1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF302
+    second: {fileID: 2100000, guid: 9c583c974f39a2843a5b6473e5c87fc1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF303
+    second: {fileID: 2100000, guid: 89f60d2a2574896438be51d897652b4f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF304
+    second: {fileID: 2100000, guid: 921652326845be74494c61c616dc7c74, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF305
+    second: {fileID: 2100000, guid: 9341f9f0e177b9e4ab72d8e980ac4e9b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF306
+    second: {fileID: 2100000, guid: e6f916cc75ea0c84db7a9f137463a38b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF307
+    second: {fileID: 2100000, guid: 84523304ed2aaa94183b87558990ae2f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF308
+    second: {fileID: 2100000, guid: ce9371400a8732d4a87f0f4708c89f7e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF309
+    second: {fileID: 2100000, guid: baaf83d05bda966409229ca5a72c01e1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF31
+    second: {fileID: 2100000, guid: b36e2cedef17fa6449c226133644af75, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF310
+    second: {fileID: 2100000, guid: 00e1eb97e7805804486d6f5d0d1d04ba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF311
+    second: {fileID: 2100000, guid: e879f3e53318b514f90dee034730185c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF312
+    second: {fileID: 2100000, guid: 7228ad57e84a6f543bbbf81e8cd129e8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF313
+    second: {fileID: 2100000, guid: a0185e575bb6ca14a97ad98360c43505, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF314
+    second: {fileID: 2100000, guid: a23648b765d9f2045a57682a1772c8e1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF315
+    second: {fileID: 2100000, guid: 486dda664bb7a144097a9fb6a11bab22, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF316
+    second: {fileID: 2100000, guid: cff771d530a8e82429fd2afc54e5732b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF317
+    second: {fileID: 2100000, guid: 366d6539f4944b549983e3786585718d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF318
+    second: {fileID: 2100000, guid: 52c6bccf2f8eac946b3fe702871ca4fc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF319
+    second: {fileID: 2100000, guid: 498d66ebc5ef1634c86cfca49154a5ff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF32
+    second: {fileID: 2100000, guid: 9e25bfa6e0a14944788dd6ff1e93287b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF320
+    second: {fileID: 2100000, guid: 0684bceae0d5aa640bc229696a9a8f1d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF321
+    second: {fileID: 2100000, guid: 024c40308c135bc4f8d013f0e80747ba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF322
+    second: {fileID: 2100000, guid: 37aa1160d38bd1d418d9dc69aeccd2d6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF323
+    second: {fileID: 2100000, guid: 65a28e43727bca141bab116518b89a5c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF324
+    second: {fileID: 2100000, guid: 0eea0faf5cf54b74c9d5317c5949b0fb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF325
+    second: {fileID: 2100000, guid: a1a851cac81d01943ad884d07f1a3f6a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF326
+    second: {fileID: 2100000, guid: b5a38f1cdd8de34489d6301003da5a19, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF327
+    second: {fileID: 2100000, guid: 5e9dd4da2534b1d49b54d688caaf579f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF328
+    second: {fileID: 2100000, guid: c535b0e0bd122214a87e7f24bfc4cd04, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF329
+    second: {fileID: 2100000, guid: b58ff3442a28e4043ae04e8af8316b1f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF33
+    second: {fileID: 2100000, guid: c2f0fd674edeff942bc763f917a3c787, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF330
+    second: {fileID: 2100000, guid: e6c81bcece49f3e4199fb4b098256f6f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF331
+    second: {fileID: 2100000, guid: 8a01d80fb1430e748821e11ebdad54f0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF332
+    second: {fileID: 2100000, guid: 4cbff66235738064094527f9b99f5be5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF333
+    second: {fileID: 2100000, guid: 1f3b757e1f4602f4c92f0b185cf40fdc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF334
+    second: {fileID: 2100000, guid: daed493c47a19db44ae0db765ba23b35, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF335
+    second: {fileID: 2100000, guid: 9eb2707b433cd7549b98643483056860, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF336
+    second: {fileID: 2100000, guid: 3c42d47140e6d844aa1a3b583ab605c8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF337
+    second: {fileID: 2100000, guid: b2004706d7f91ad499a8a563e9c6b575, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF338
+    second: {fileID: 2100000, guid: 44f7c66a65cc38d4cb67ec06749596c4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF339
+    second: {fileID: 2100000, guid: 19ba1383140dc8040b3179a35e364dc1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF34
+    second: {fileID: 2100000, guid: c0618079369b52640b434989981042dd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF340
+    second: {fileID: 2100000, guid: 0b3793a2cd9020241aa3b4ca25d03f84, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF341
+    second: {fileID: 2100000, guid: 0730e65411ca0ea40954cc262b173fa7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF342
+    second: {fileID: 2100000, guid: e3de6e404bd8806448b498bcafec2849, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF343
+    second: {fileID: 2100000, guid: 03d649bacb3b2c64c962eca4cd02f96b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF344
+    second: {fileID: 2100000, guid: 5ca5a5241e5080948bd1ce4600df04b7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF345
+    second: {fileID: 2100000, guid: aeaf15afbff867343a82958e87b6482f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF346
+    second: {fileID: 2100000, guid: 2d1a1c7c4defb3647a6c0d1e84081a19, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF347
+    second: {fileID: 2100000, guid: 3df9ea38ee93f3c4cb62515da99058c8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF348
+    second: {fileID: 2100000, guid: ead8dfa106a53e94b9e76db744c9503e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF349
+    second: {fileID: 2100000, guid: 1ed80572c25470c419dfdec1f7289aff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF35
+    second: {fileID: 2100000, guid: 6a3250c224d64e34486e57fe54076153, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF350
+    second: {fileID: 2100000, guid: 9831be16cbeb1b043b8ba979dc908d72, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF351
+    second: {fileID: 2100000, guid: 3707b2c150ec06148af43897b41f56ef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF352
+    second: {fileID: 2100000, guid: 1780a114e5cf38a498a3f7fa1792666d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF353
+    second: {fileID: 2100000, guid: 6be35c945c75cc34cbcca3a82863e9f9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF354
+    second: {fileID: 2100000, guid: bc5015bd86dc23b4cb3c309a94648a16, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF355
+    second: {fileID: 2100000, guid: e978ce7109cc08d4c81f0f27fe8d75e3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF356
+    second: {fileID: 2100000, guid: 6a61c6478a7acd04a9ed27eb9a63d6cf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF357
+    second: {fileID: 2100000, guid: e94b17e4f1da32546a47709728a56bd6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF358
+    second: {fileID: 2100000, guid: 47953fda9ca4aad4c9b4c0da31d64d95, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF359
+    second: {fileID: 2100000, guid: aa3478994ba9fd743a92a438204bfcba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF36
+    second: {fileID: 2100000, guid: 60c15ce4de6fc864db189f573b9eaf32, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF360
+    second: {fileID: 2100000, guid: 29f75a336ff9ca646ba7d529c0aabf0b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF361
+    second: {fileID: 2100000, guid: 6c3ac8c25a6f7e5408c6730442702b22, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF362
+    second: {fileID: 2100000, guid: 5e833607e7f5c00439c158f7f29acaa5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF363
+    second: {fileID: 2100000, guid: cea1f08f1f97d1d41b381f8298d75e4f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF364
+    second: {fileID: 2100000, guid: 02e34d27ca9ae35449dc803b5d8068b3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF365
+    second: {fileID: 2100000, guid: 008f65de9876ca3429ebe9861f8f0b7e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF366
+    second: {fileID: 2100000, guid: a75c87e6af3fa1d4888e1dfd7fd73695, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF367
+    second: {fileID: 2100000, guid: 2eb603ad2dcab114a8faca3812bcfab5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF368
+    second: {fileID: 2100000, guid: 528d8524f6a6c5346b03e81b89fbb22f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF369
+    second: {fileID: 2100000, guid: 683da16c70e172f499a8e2afbac01af2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF37
+    second: {fileID: 2100000, guid: 27dcda890405c894fa5b31fd58510aed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF370
+    second: {fileID: 2100000, guid: 37c941d2091fd554f81134f2ea4bb6cf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF371
+    second: {fileID: 2100000, guid: 39b3aa6049ee00d47a1c8fee5f1335e2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF372
+    second: {fileID: 2100000, guid: bf99893b0e7d0a64dbc6b7807b44d850, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF373
+    second: {fileID: 2100000, guid: d5fa43512771d794d9edc3fedd27a318, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF374
+    second: {fileID: 2100000, guid: 4ede8352ea3d9f5429d2db4d18e66fb6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF375
+    second: {fileID: 2100000, guid: 2f312ca4fc28def4988c7bb3151d3eb3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF376
+    second: {fileID: 2100000, guid: f47f8c077a95cbf449903cc32e210656, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF377
+    second: {fileID: 2100000, guid: 82f408aa6352d0d4dbc79a72f9a3f70a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF378
+    second: {fileID: 2100000, guid: 6c5d8c101e582c9439acec36a5998c4c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF379
+    second: {fileID: 2100000, guid: ba5746ee0299aa14bb2f88d4bf9f030f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF38
+    second: {fileID: 2100000, guid: afa13ab9bd953cf42a5557225b8717c6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF380
+    second: {fileID: 2100000, guid: dd3c58931f88c0d4080abbbcc0ae7837, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF381
+    second: {fileID: 2100000, guid: 786320af616bdf941a35449c0a4144a2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF382
+    second: {fileID: 2100000, guid: 0ae6cffb3020eb745aeec503e82404f1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF383
+    second: {fileID: 2100000, guid: 1bdf41ed59fa2214cbb681ae84a8c0b1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF384
+    second: {fileID: 2100000, guid: ddd709cadb04fca4583e6211fe122424, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF385
+    second: {fileID: 2100000, guid: b51d111c6175fba4899b1a8d1ce91ee7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF386
+    second: {fileID: 2100000, guid: 15ae3dfcfb2fe2044947c99fb57ddeb9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF387
+    second: {fileID: 2100000, guid: 5f3c232d971b7e14fb5ad47336bbde38, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF388
+    second: {fileID: 2100000, guid: a3ea51a68b4d05641ba768673d3dc17b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF389
+    second: {fileID: 2100000, guid: 0416feeed0d543d4480bceba575e8505, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF39
+    second: {fileID: 2100000, guid: 75ed8730fa28a514b8d11cf50e597dc9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF390
+    second: {fileID: 2100000, guid: 2dbf08329d1f805478aee5b2ded3b96d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF391
+    second: {fileID: 2100000, guid: 836bdd76ac93e2340afbb10c8b1a6f48, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF392
+    second: {fileID: 2100000, guid: 8a25695c7cd1d3949ac475264575d6e8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF393
+    second: {fileID: 2100000, guid: 9083c4f495fcd5a4c824bc2d71b4a678, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF394
+    second: {fileID: 2100000, guid: e08d6e68923d2f046bf44b30daa8cc8b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF395
+    second: {fileID: 2100000, guid: f184242c917dd2245ad921976d3194ac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF396
+    second: {fileID: 2100000, guid: 83fab7e856071fd4080c9cfa9f36c7a0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF397
+    second: {fileID: 2100000, guid: 4ae5702de4ce4564a98254c25dffeb25, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF398
+    second: {fileID: 2100000, guid: bb3b615fb1b1b43469a1e29c62d5494f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF399
+    second: {fileID: 2100000, guid: 19e57fdd5bfd5564aa10d65ce383a3a2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF4
+    second: {fileID: 2100000, guid: 85573aefce7d6e445b627f83b4947e23, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF40
+    second: {fileID: 2100000, guid: 1b716609cd2447d4da2e7e375177055c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF400
+    second: {fileID: 2100000, guid: 9c4bbb47251804e47ad8778aca596b91, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF401
+    second: {fileID: 2100000, guid: 05551bdcc16b6b447912bf6d6f80a99a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF402
+    second: {fileID: 2100000, guid: d81c063448b7db241bdc412c1fe0294f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF403
+    second: {fileID: 2100000, guid: 5606836583060924889575cc3b481736, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF404
+    second: {fileID: 2100000, guid: f8a373e9ae242834184d88e078c00528, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF405
+    second: {fileID: 2100000, guid: 5fc1d0b3f8a32ad4f93819f00cc09530, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF406
+    second: {fileID: 2100000, guid: 30bec1be32ea3214baae24dfb6a1abb7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF407
+    second: {fileID: 2100000, guid: e8afd3ca026b0e746afe986908ab25fa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF408
+    second: {fileID: 2100000, guid: 3230b38c97d61f3428d7a75761ef777c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF409
+    second: {fileID: 2100000, guid: 96bb1592149218747aa3145c72d5df77, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF41
+    second: {fileID: 2100000, guid: fc077150ef431e44db1a982961d52495, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF410
+    second: {fileID: 2100000, guid: 16a9ba6d12fdfca4b934baca6a756415, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF411
+    second: {fileID: 2100000, guid: 79bf9c65a9b1ab542ade40cba6281c8a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF412
+    second: {fileID: 2100000, guid: 0a7febd1ec13f1b4f90fbec6afbfd866, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF413
+    second: {fileID: 2100000, guid: 0a1d1b8f373031645b865b593f3f3d13, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF414
+    second: {fileID: 2100000, guid: 77cb6358a1938d34397949a5ed9b9b2c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF415
+    second: {fileID: 2100000, guid: 7e30fe0c180ecae4f97a80f1a4a84838, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF416
+    second: {fileID: 2100000, guid: 18f10bc11f85fad4c98a7349138c7bd6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF417
+    second: {fileID: 2100000, guid: 9ed05a9682f4760478a501ba09d4c26a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF418
+    second: {fileID: 2100000, guid: eff418888efb2c9478a8b9220bd314d1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF419
+    second: {fileID: 2100000, guid: d40bd0f5c5751d8499112aff0f3e65b1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF42
+    second: {fileID: 2100000, guid: 8ae12d628f88f154d89e761dd0423358, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF420
+    second: {fileID: 2100000, guid: 6ccb2d30bd9fe43479b4833364ff0320, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF421
+    second: {fileID: 2100000, guid: 3aa72bec8538ccf41b39959492aaa480, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF422
+    second: {fileID: 2100000, guid: 0ffa6e2d017bc554d8e4bbf5357bb3b5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF423
+    second: {fileID: 2100000, guid: eb9ca80b6d879be46aa6028371543830, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF424
+    second: {fileID: 2100000, guid: 2afff5910ffdb5d458c4504f13d8d6fc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF425
+    second: {fileID: 2100000, guid: 777a24683be4dcf4a9a648f3751b9ff3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF426
+    second: {fileID: 2100000, guid: 66329702d3f262040a759d797bdd14c8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF427
+    second: {fileID: 2100000, guid: 594caf0a18677fe478dffd619a4b1508, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF428
+    second: {fileID: 2100000, guid: 698969b5bdb857442bab498114841ec8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF429
+    second: {fileID: 2100000, guid: df6a1dd9cbcae0d4d9cc2084bd6e5c35, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF43
+    second: {fileID: 2100000, guid: 0e693ab3cbbe0154a83a34766eae7a6d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF430
+    second: {fileID: 2100000, guid: fb4441ffa1e934d4692a11c96b243a3c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF431
+    second: {fileID: 2100000, guid: 2e395fb19704e344cb258d9092b36168, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF432
+    second: {fileID: 2100000, guid: bad61d6c425fde2478b1737a57ca9174, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF433
+    second: {fileID: 2100000, guid: 6c274a8a377f0364d8a50c7ad7faf877, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF434
+    second: {fileID: 2100000, guid: 6e36577d97517294e871d0cbb7934f89, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF435
+    second: {fileID: 2100000, guid: 443a022263df55a40a2386ffc8d3785c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF436
+    second: {fileID: 2100000, guid: a0863e25e223b4b45b416274318087dc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF437
+    second: {fileID: 2100000, guid: c5a8f68a8880792429c3f13dcdf7c293, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF438
+    second: {fileID: 2100000, guid: 1ac660ec4606b4e4089206c03047744f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF439
+    second: {fileID: 2100000, guid: 00aabf3bfbe0ab44288bda680515a377, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF44
+    second: {fileID: 2100000, guid: 925fe482d040626449d7052547150b48, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF440
+    second: {fileID: 2100000, guid: f3f113de84573d94dac285f5cb56e2d1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF441
+    second: {fileID: 2100000, guid: d2614e99dc986c54d926f5b1ccabb7d4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF442
+    second: {fileID: 2100000, guid: e49a7e452ec19d843a6f6d7e165a874e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF443
+    second: {fileID: 2100000, guid: 74fc1efb73a0af24c92fc5d592898869, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF444
+    second: {fileID: 2100000, guid: 02cc72f74ce6ec84b8b33f77476674b6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF445
+    second: {fileID: 2100000, guid: ecd2a5ff78e2d594da2843689e6dd43b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF446
+    second: {fileID: 2100000, guid: 820c8e264e697f54d903bb510ba1c7e5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF447
+    second: {fileID: 2100000, guid: 0ba397769c8eda44d9d1618eddb308cb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF448
+    second: {fileID: 2100000, guid: 2d2b20b96bd90704585a95e7f9dcdb9e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF449
+    second: {fileID: 2100000, guid: 8aa330eaa770b7740b24592d202f43e4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF45
+    second: {fileID: 2100000, guid: 3f8741b43031aa046ad823c2c9f0df9f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF450
+    second: {fileID: 2100000, guid: 58e5fb739fed483479e54d7bd2b857f7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF451
+    second: {fileID: 2100000, guid: 3284bf855455b594b829e3b84527b321, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF452
+    second: {fileID: 2100000, guid: fa8cc6310ef842444bc50226dfe05ae5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF453
+    second: {fileID: 2100000, guid: ca340e0d9ffa4624ab512d2360a2fefd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF454
+    second: {fileID: 2100000, guid: ae7abe4d5d3761f41a97c514866b9f78, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF455
+    second: {fileID: 2100000, guid: d12cefef0b858bc46a9ed1e495efe2ad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF456
+    second: {fileID: 2100000, guid: ee91abe8b3f4ada488693c6a920a7aa1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF457
+    second: {fileID: 2100000, guid: e8a2965f445efbc429419ce03c8792e8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF458
+    second: {fileID: 2100000, guid: 48e8699579d8599478384c508bc69362, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF459
+    second: {fileID: 2100000, guid: ce71abb24a5ee844b8d15496ba6387a9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF46
+    second: {fileID: 2100000, guid: 0bf5316be4a86b746bc4c1c78f4bccdc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF460
+    second: {fileID: 2100000, guid: 6a46fee5c0b9597439e292c3d8efb676, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF461
+    second: {fileID: 2100000, guid: e8947c4e3cabbda4fa30d39149d467b0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF462
+    second: {fileID: 2100000, guid: 04eba99364be7f34887702b3ad32eadf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF463
+    second: {fileID: 2100000, guid: f8d5cb77620287a4e84d42e07b3e3cef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF464
+    second: {fileID: 2100000, guid: 872f42515f009ab4f94a8b01682bf6ec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF465
+    second: {fileID: 2100000, guid: 80696971656b5c84d9d818900218625d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF466
+    second: {fileID: 2100000, guid: e6f4d2619548b6345ac4cb4dd9af6d45, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF467
+    second: {fileID: 2100000, guid: 57d77c8940cf4894abb5bac758ee29e6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF468
+    second: {fileID: 2100000, guid: c6bf96aba73de5d458477ce8cea4ad79, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF47
+    second: {fileID: 2100000, guid: 57349a5726e763a43ab29ca7221402f9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF48
+    second: {fileID: 2100000, guid: 4a6cb60d98eb25d43931c738b22ca338, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF49
+    second: {fileID: 2100000, guid: 7a40e816ac2b808479b55c0f5fb798a9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF5
+    second: {fileID: 2100000, guid: 69b04b60a5a6a3343bb6300d74ccdb3f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF50
+    second: {fileID: 2100000, guid: e929aa2806319214abd0968de0b0edc9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF51
+    second: {fileID: 2100000, guid: 9c9cf9b47d3d85645ba4e57a4a56bc68, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF52
+    second: {fileID: 2100000, guid: 0bd186bd83b7b084bab4c517ef760a2f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF53
+    second: {fileID: 2100000, guid: c56478ceb7eb44d4d9a30f5d5b907f18, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF54
+    second: {fileID: 2100000, guid: 581f54549a1b4d54c987d2bc5ac4af92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF55
+    second: {fileID: 2100000, guid: 535b44b73477c5a4ead0f22d203a020c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF56
+    second: {fileID: 2100000, guid: 24b89684ae803ee4b8ae374cb018bcb1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF57
+    second: {fileID: 2100000, guid: 9091cf9853aa83948bf8bb9f3208f81a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF58
+    second: {fileID: 2100000, guid: a5e6b8e37d1261d41be4fbcc466e66bf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF59
+    second: {fileID: 2100000, guid: c92ba33bc03d5b443bfa9ee5ce5a6856, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF6
+    second: {fileID: 2100000, guid: a967175f948117b4d92a55d7f6439c31, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF60
+    second: {fileID: 2100000, guid: d6dbf33fb99443b48a8b920621a54de5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF61
+    second: {fileID: 2100000, guid: ebd1fae231a299541869f216634f9894, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF62
+    second: {fileID: 2100000, guid: bfec3e538d5b1ae49bbb0a6e5010bb26, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF63
+    second: {fileID: 2100000, guid: f5afc507a1d2f1b44b29ab3f54210d8d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF64
+    second: {fileID: 2100000, guid: d94aeb5911274524da8be52b202b61ad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF65
+    second: {fileID: 2100000, guid: 338f81bce359ae640901c206378f902f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF66
+    second: {fileID: 2100000, guid: 5f581b22ef37945409a125fdfe8129a5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF67
+    second: {fileID: 2100000, guid: b3f377dedb156434482d437887a9ed0e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF68
+    second: {fileID: 2100000, guid: 3657e70f90064e847a6654992ef9191c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF69
+    second: {fileID: 2100000, guid: ae0e42500d5aec2439c1fc78dbe71dfb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF7
+    second: {fileID: 2100000, guid: 058e356deceb48a40b8c6e4344dcf175, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF70
+    second: {fileID: 2100000, guid: ef305a3660b72f84abab08e7b97eddaf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF71
+    second: {fileID: 2100000, guid: 1c741a51f46f28a4ca6da445f6f5e459, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF72
+    second: {fileID: 2100000, guid: cb751e54869e77d4393e08a1c05ce025, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF73
+    second: {fileID: 2100000, guid: 09cffc69953213143aab2bc9f8a31f8b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF74
+    second: {fileID: 2100000, guid: 3209f8cb63420e544b67dc4f6c38ae68, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF75
+    second: {fileID: 2100000, guid: a7806aa10ac63eb439fa552eb1ec9ca6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF76
+    second: {fileID: 2100000, guid: 0db58ffef1d7b5243b291c6ac5e73fdf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF77
+    second: {fileID: 2100000, guid: df9241c1de32e284eb89649d9b1c5633, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF78
+    second: {fileID: 2100000, guid: b9268cc9aa27768488928e6b80c22ec6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF79
+    second: {fileID: 2100000, guid: 585d661e2730e804fa7830cbc922d1ee, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF8
+    second: {fileID: 2100000, guid: 7fd5712cce5496d4299a53df780fe829, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF80
+    second: {fileID: 2100000, guid: 35d71b5e7cf2bdf4b93e12dfe2bed197, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF81
+    second: {fileID: 2100000, guid: 9a83ef6fec731c54b8f7b996527b6c2b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF82
+    second: {fileID: 2100000, guid: 99adcd1352f570b4d90b26f0f06b2091, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF83
+    second: {fileID: 2100000, guid: 0ffd45959be745c4abeb049f06e3c382, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF84
+    second: {fileID: 2100000, guid: 020680cae12e54240bbdb6b957105a9c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF85
+    second: {fileID: 2100000, guid: b95204ad5213d6a4ebb99dc2002741f2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF86
+    second: {fileID: 2100000, guid: 1b2aab6aea80e104a96ef4d7f472d6c5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF87
+    second: {fileID: 2100000, guid: 50d09f9ee3ae27147ab8238c6bfd2143, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF88
+    second: {fileID: 2100000, guid: 3f5044c145a99a146b690aeebd089871, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF89
+    second: {fileID: 2100000, guid: a4b24263710375d4f9e2d5b3cec16893, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF9
+    second: {fileID: 2100000, guid: f41ae102a347d1441831747d3a33d52c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF90
+    second: {fileID: 2100000, guid: 067fce573b595bb4db72b01428c92941, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF91
+    second: {fileID: 2100000, guid: 37382e15a29f75f4ca88a92fdc167d35, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF92
+    second: {fileID: 2100000, guid: f2a941576c20b0b4aa1190043ed246ac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF93
+    second: {fileID: 2100000, guid: 8a100ff1aa61ae24880b375c1a6f7c0c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF94
+    second: {fileID: 2100000, guid: cc628b1becc7a784885331d97439b5a8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF95
+    second: {fileID: 2100000, guid: eb159151d55df3e489a52b08886d3f6d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF96
+    second: {fileID: 2100000, guid: 89940c3189c142a4a826812a044cb8a9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF97
+    second: {fileID: 2100000, guid: a64df18d48414bc48bdfa58936117b55, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF98
+    second: {fileID: 2100000, guid: 461c260fe2f86524a8a3a6e5e89947ce, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fort_Wort_Area_Micro_Weather_Map___Google_Map_Principled_BSDF99
+    second: {fileID: 2100000, guid: 13742e7e5b68bc948b6d13aed0f8cb32, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

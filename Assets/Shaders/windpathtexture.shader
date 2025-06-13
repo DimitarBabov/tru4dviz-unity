@@ -13,23 +13,37 @@ Shader "Custom/WindStreamlineTexture"
         _TextureAnimationSpeed ("Texture Animation Speed", Float) = 1.0
         _FlowTexture ("Flow Texture", 2D) = "white" {}
         _FlowTiling ("Flow Tiling", Float) = 1.0
+        _MinAnimationSpeed ("Min Animation Speed", Range(0, 1)) = 0.2
         _BlackThreshold ("Black Threshold", Range(0, 1)) = 0.1
         _EnableAnimation ("Enable Animation", Float) = 1.0
 
         [Header(Visualization Trimming)]
         _MaxAltitude("Max Altitude", Range(0, 1)) = 1.0
         _MinAltitude("Min Altitude", Range(0, 1)) = 0.0
+        _MinLowestAltitude("Min Lowest Altitude", Range(0, 1)) = 0.0
         _BoundsLeft("Bounds Left", Range(0, 1)) = 0.0
         _BoundsRight("Bounds Right", Range(0, 1)) = 1.0
         _BoundsFront("Bounds Front", Range(0, 1)) = 0.0
         _BoundsBack("Bounds Back", Range(0, 1)) = 1.0
-        [Toggle] _EnableSpeedTrim("Enable Speed Trim", Float) = 0.0
-        _SpeedTrimRange("Speed Trim Range", Range(0, 1)) = 0.85
-        _SpeedTrimWidth("Speed Trim Width", Range(0.01, 0.5)) = 0.1
+        _SpeedTrimLower("Speed Trim Lower", Range(0, 1)) = 0.0
+        _SpeedTrimUpper("Speed Trim Upper", Range(0, 1)) = 1.0
+        _FlowDirectionChangeThreshold("Flow Direction Change Threshold", Range(0, 0.15)) = 0.0
+        
+        [Header(Width Variation)]
+        [Toggle] _EnableWidthTrim("Enable Width Trimming", Float) = 1.0
+        [Range(0.1, 1.0)]
+        _MinWidthScale("Minimum Width Scale", Float) = 0.3
         
         [Header(World Bounds)]
         _WorldBoundsMin("World Bounds Min", Vector) = (0,0,0,0)
         _WorldBoundsMax("World Bounds Max", Vector) = (1,1,1,0)
+        
+        [Header(Global Color Mapping)]
+        _GlobalMinWindMagnitude("Global Min Wind Magnitude", Float) = 0.0
+        _GlobalMaxWindMagnitude("Global Max Wind Magnitude", Float) = 20.0
+        _UseGlobalMagnitudeRange("Use Global Magnitude Range", Float) = 0.0
+        _DataMinWindMagnitude("Data Min Wind Magnitude", Float) = 0.0
+        _DataMaxWindMagnitude("Data Max Wind Magnitude", Float) = 20.0
     }
     
     SubShader
@@ -55,10 +69,12 @@ Shader "Custom/WindStreamlineTexture"
             {
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
-                float2 uv2: TEXCOORD1;
-                float2 uv3: TEXCOORD2;
-                float4 color : COLOR;
+                float2 uv2 : TEXCOORD1; // For magnitude normalization and animation speed
+                float2 uv3 : TEXCOORD2; // For MSL normalization and cumulative distance
+                float2 uv4 : TEXCOORD3; // For direction changes and lowest altitude
+                float2 uv5 : TEXCOORD4; // For random texture offset
                 float3 normal : NORMAL; // Line direction
+                fixed4 color : COLOR;
                 UNITY_VERTEX_INPUT_INSTANCE_ID
             };
             
@@ -67,11 +83,13 @@ Shader "Custom/WindStreamlineTexture"
                 float2 uv : TEXCOORD0;
                 float2 uv2: TEXCOORD1;
                 float2 uv3: TEXCOORD2;
-                float2 textureUV : TEXCOORD3; // Separate UV for texture sampling
+                float2 uv4: TEXCOORD3;
+                float2 uv5: TEXCOORD4;
+                float2 textureUV : TEXCOORD5; // Separate UV for texture sampling
                 float4 vertex : SV_POSITION;
                 float4 color : COLOR;
-                float3 worldPos : TEXCOORD4; // Added for spatial bounds check
-                UNITY_FOG_COORDS(5)
+                float3 worldPos : TEXCOORD6; // Added for spatial bounds check
+                UNITY_FOG_COORDS(7)
                 UNITY_VERTEX_OUTPUT_STEREO
             };
             
@@ -82,21 +100,32 @@ Shader "Custom/WindStreamlineTexture"
             sampler2D _FlowTexture;
             float4 _FlowTexture_ST;
             float _FlowTiling;
+            float _MinAnimationSpeed;
             float _BlackThreshold;
             float _EnableAnimation;
             
             // Visualization trimming parameters
             float _MaxAltitude;
             float _MinAltitude;
+            float _MinLowestAltitude;
             float _BoundsLeft;
             float _BoundsRight;
             float _BoundsFront;
             float _BoundsBack;
-            float _EnableSpeedTrim;
-            float _SpeedTrimRange;
-            float _SpeedTrimWidth;
+            float _SpeedTrimLower;
+            float _SpeedTrimUpper;
+            float _FlowDirectionChangeThreshold;
+            float _EnableWidthTrim;
+            float _MinWidthScale;
             float4 _WorldBoundsMin;
             float4 _WorldBoundsMax;
+            
+            // Global color mapping parameters
+            float _GlobalMinWindMagnitude;
+            float _GlobalMaxWindMagnitude;
+            float _UseGlobalMagnitudeRange;
+            float _DataMinWindMagnitude;
+            float _DataMaxWindMagnitude;
             
             v2f vert (appdata v)
             {
@@ -106,9 +135,12 @@ Shader "Custom/WindStreamlineTexture"
                 // UV.x = Position along streamline (0-1)
                 // UV.y = Billboard side (0 or 1)
                 // UV2.x = Normalized wind magnitude (0-1) for color
-                // UV2.y = Combined animation speed (magnitude * length multiplier)
+                // UV2.y = Normalized average wind speed per streamline (0-1)
                 // UV3.x = Normalized MSL (0-1)
-                // UV3.y = Random texture offset per streamline
+                // UV3.y = Actual cumulative distance along streamline (world units)
+                // UV4.x = Flow direction change intensity (0-1, sine-based: 0=straight, 1=90° turn, realistic wind flow)
+                // UV4.y = Normalized lowest altitude per streamline (0-1) for trimming
+                // UV5.x = Random texture offset per streamline (0-randomOffsetRange) for pattern variation
                 
                 // Transform vertex to world space
                 float3 worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
@@ -143,21 +175,39 @@ Shader "Custom/WindStreamlineTexture"
                 o.uv = v.uv;
                 o.uv2 = v.uv2;
                 o.uv3 = v.uv3;
+                o.uv4 = v.uv4;
+                o.uv5 = v.uv5;
                 
                 // Calculate separate texture UV coordinates for flow texture sampling
-                // Use UV.x for position along the line, UV.y for width across the line
-                float textureU = v.uv.x * _FlowTiling; // Position along the line with tiling
+                // Use actual cumulative distance along streamline for consistent texture density
+                
+                // Get actual cumulative distance along streamline from UV3.y (in world units)
+                float cumulativeDistance = v.uv3.y;
+                
+                // Get random texture offset for this streamline from UV5.x
+                float randomOffset = v.uv5.x;
+                
+                // Apply tiling based on actual cumulative distance along the curved streamline path
+                // This ensures consistent texture density regardless of streamline length or curvature
+                float textureU = cumulativeDistance * _FlowTiling * 0.01; // Scale factor to control tiling density
                 float textureV = v.uv.y; // Width across the line (0 to 1)
                 
-                // Add random offset per streamline from UV3.y
-                float randomOffset = v.uv3.y;
+                // Add random texture offset to prevent synchronized patterns between streamlines
                 textureU += randomOffset;
                 
-                // Add animation based on time and magnitude (only if animation is enabled)
+                // Add animation based on time and average wind speed (only if animation is enabled)
                 if (_EnableAnimation > 0.5)
                 {
-                    float combinedAnimSpeed = v.uv2.y; // Get combined animation speed (avg magnitude * length multiplier) from UV2.y
-                    float animationOffset = _Time.y * _TextureAnimationSpeed * combinedAnimSpeed;
+                    // Use normalized average wind speed for consistent animation along entire streamline
+                    // This ensures proper flow direction and consistent speed per streamline
+                    float averageWindSpeed = v.uv2.y; // Normalized average wind speed (0-1)
+                    
+                    // Apply minimum speed to ensure all streamlines have visible flow
+                    // Lerp between minimum speed and full speed based on wind magnitude
+                    float finalAnimationSpeed = lerp(_MinAnimationSpeed, 1.0, averageWindSpeed);
+                    
+                    // Apply animation speed proportional to wind speed with minimum threshold
+                    float animationOffset = _Time.y * _TextureAnimationSpeed * finalAnimationSpeed;
                     textureU += animationOffset;
                 }
                 
@@ -186,20 +236,44 @@ Shader "Custom/WindStreamlineTexture"
                 // Apply altitude trimming using normalized MSL
                 float altitudeTrim = step(_MinAltitude, i.uv3.x) * step(i.uv3.x, _MaxAltitude);
                 
+                // Apply minimum lowest altitude trimming using normalized lowest altitude per streamline
+                float lowestAltitudeTrim = step(i.uv4.y, _MinLowestAltitude);
+                
                 // Apply speed trimming using normalized magnitude
                 float speedTrim = 1.0;
-                if (_EnableSpeedTrim > 0.5)
+                float speed = i.uv2.x; // Normalized wind magnitude (0-1)
+                
+                // Hide speeds below lower threshold or above upper threshold
+                if (speed < _SpeedTrimLower || speed > _SpeedTrimUpper)
                 {
-                    float speedDiff = abs(i.uv2.x - _SpeedTrimRange);
-                    speedTrim = 1.0 - saturate(speedDiff / _SpeedTrimWidth);
+                    speedTrim = 0.0;
+                }
+                
+                // Apply flow direction change trimming
+                // When threshold = 0.0, show all streamlines (minimum flow direction change = 0.0)
+                // When threshold > 0.0, hide straighter streamlines (require higher flow direction change)
+                float directionTrim = 1.0;
+                float directionChange = i.uv4.x; // Flow direction change intensity (0-1, sine-based: 0=straight, 1=90° turn)
+                
+                // Use threshold as minimum flow direction change required to show
+                // threshold=0.0 shows all (changes>=0.0, everything visible)
+                // threshold=0.2 shows changes>=0.2 (hides very straight lines)
+                // threshold=0.8 shows changes>=0.8 (shows only highly curved sections)
+                if (directionChange < _FlowDirectionChangeThreshold)
+                {
+                    directionTrim = 0.0; // Hide sections below threshold flow direction change
                 }
                 
                 // Combine all trimming factors
-                float trimFactor = spatialTrim * altitudeTrim * speedTrim;
+                float trimFactor = spatialTrim * altitudeTrim * lowestAltitudeTrim * speedTrim * directionTrim;
                 
                 // Check altitude bounds using MSL data (UV3.x)
                 float mslHeight = i.uv3.x;
                 if (mslHeight < _MinAltitude || mslHeight > _MaxAltitude)
+                    discard;
+                
+                // Check minimum lowest altitude using UV4.y
+                if (i.uv4.y > _MinLowestAltitude)
                     discard;
                 
                 // Check spatial bounds using normalized position
@@ -207,15 +281,9 @@ Shader "Custom/WindStreamlineTexture"
                     normalizedPos.z < _BoundsFront || normalizedPos.z > _BoundsBack)
                     discard;
                 
-                // Check speed trim if enabled
-                if (_EnableSpeedTrim > 0.5)
-                {
-                    float speed = i.uv2.x; // Normalized wind magnitude
-                    float trimMin = _SpeedTrimRange - _SpeedTrimWidth;
-                    float trimMax = _SpeedTrimRange + _SpeedTrimWidth;
-                    if (speed < trimMin || speed > trimMax)
-                        discard;
-                }
+                // Check speed trim bounds
+                if (speed < _SpeedTrimLower || speed > _SpeedTrimUpper)
+                    discard;
                 
                 // Sample the flow texture (greyscale - only use alpha)
                 fixed4 flowTexture = tex2D(_FlowTexture, i.textureUV);
@@ -237,7 +305,21 @@ Shader "Custom/WindStreamlineTexture"
                 // Use UV.y for radial distance from center (0 = center, 0.5 = edge)
                 float distanceFromCenter = abs(i.uv.y - 0.5) * 2.0; // 0 at center, 1 at edges
                 
-                float circleRadius = 0.8; // Adjust this to control circle size
+                // Apply width trimming based on wind magnitude
+                float circleRadius = 0.8; // Base circle size
+                if (_EnableWidthTrim > 0.5)
+                {
+                    // Get wind magnitude (0-1) from UV2.x
+                    float windMagnitude = i.uv2.x;
+                    
+                    // Calculate width scale: interpolate between minWidthScale and 1.0 based on magnitude
+                    float widthScale = lerp(_MinWidthScale, 1.0, windMagnitude);
+                    
+                    // Adjust circle radius based on width scale
+                    // Lower magnitude = smaller radius = thinner streamline
+                    circleRadius *= widthScale;
+                }
+                
                 float softness = 0.3; // Adjust this to control edge softness
                 float circleAlpha = 1.0 - smoothstep(circleRadius - softness, circleRadius + softness, distanceFromCenter);
                 
@@ -246,6 +328,22 @@ Shader "Custom/WindStreamlineTexture"
                 
                 // Calculate gradient color based on magnitude (independent of texture effect)
                 float h = i.uv2.x;
+                
+                // Apply global magnitude range remapping if enabled
+                if (_UseGlobalMagnitudeRange > 0.5)
+                {
+                    // Convert data-normalized magnitude back to physical magnitude
+                    float physicalMagnitude = _DataMinWindMagnitude + h * (_DataMaxWindMagnitude - _DataMinWindMagnitude);
+                    
+                    // Remap to global range
+                    float globalRange = _GlobalMaxWindMagnitude - _GlobalMinWindMagnitude;
+                    if (globalRange > 0.0)
+                    {
+                        // Clamp to global range and normalize to 0-1
+                        float clampedMagnitude = clamp(physicalMagnitude, _GlobalMinWindMagnitude, _GlobalMaxWindMagnitude);
+                        h = (clampedMagnitude - _GlobalMinWindMagnitude) / globalRange;
+                    }
+                }
                 float x;
                 fixed4 gradientColor = fixed4(1, 1, 1, 1);
                 
