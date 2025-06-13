@@ -142,7 +142,7 @@ public class WindFieldMeshNc : MonoBehaviour
 
             // Calculate arrow orientation
             Vector3 windDir = windVec.normalized;
-            Vector3 basePos = tipPos + windDir * arrowLength;
+            Vector3 basePos = tipPos + windDir * scaledLength;
             
             // Create local coordinate system for the arrow
             Vector3 forward = windDir;

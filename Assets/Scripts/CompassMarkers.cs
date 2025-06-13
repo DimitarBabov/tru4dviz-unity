@@ -19,23 +19,17 @@ public class CompassMarkers : MonoBehaviour
         float centerX = (minX + maxX) * 0.5f;
         float centerY = (minY + maxY) * 0.5f;
 
-        // Corner markers (white)
-        CreateTextMarker("SW", new Vector3(minX - offsetX, altitude, minY - offsetY), "SW Corner Marker", Color.white, markersParent.transform);
-        CreateTextMarker("SE", new Vector3(maxX + offsetX, altitude, minY - offsetY), "SE Corner Marker", Color.white, markersParent.transform);
-        CreateTextMarker("NW", new Vector3(minX - offsetX, altitude, maxY + offsetY), "NW Corner Marker", Color.white, markersParent.transform);
-        CreateTextMarker("NE", new Vector3(maxX + offsetX, altitude, maxY + offsetY), "NE Corner Marker", Color.white, markersParent.transform);
-
-        // Cardinal direction markers (colored)
-        CreateTextMarker("N", new Vector3(centerX, altitude, maxY + offsetY), "North Marker", Color.blue, markersParent.transform);
-        CreateTextMarker("S", new Vector3(centerX, altitude, minY - offsetY), "South Marker", Color.red, markersParent.transform);
-        CreateTextMarker("W", new Vector3(minX - offsetX, altitude, centerY), "West Marker", Color.green, markersParent.transform);
-        CreateTextMarker("E", new Vector3(maxX + offsetX, altitude, centerY), "East Marker", Color.yellow, markersParent.transform);
+        // Cardinal direction markers (white)
+        CreateTextMarker("N", new Vector3(centerX, altitude, maxY + offsetY), "North Marker", Color.white, markersParent.transform);
+        CreateTextMarker("S", new Vector3(centerX, altitude, minY - offsetY), "South Marker", Color.white, markersParent.transform);
+        CreateTextMarker("W", new Vector3(minX - offsetX, altitude, centerY), "West Marker", Color.white, markersParent.transform);
+        CreateTextMarker("E", new Vector3(maxX + offsetX, altitude, centerY), "East Marker", Color.white, markersParent.transform);
 
         Debug.Log($"Compass Markers Created:");
-        Debug.Log($"  SW: X={minX}, Y={minY}, Altitude={altitude}");
-        Debug.Log($"  SE: X={maxX}, Y={minY}, Altitude={altitude}");
-        Debug.Log($"  NW: X={minX}, Y={maxY}, Altitude={altitude}");
-        Debug.Log($"  NE: X={maxX}, Y={maxY}, Altitude={altitude}");
+        Debug.Log($"  N: X={centerX}, Y={maxY}, Altitude={altitude}");
+        Debug.Log($"  S: X={centerX}, Y={minY}, Altitude={altitude}");
+        Debug.Log($"  W: X={minX}, Y={centerY}, Altitude={altitude}");
+        Debug.Log($"  E: X={maxX}, Y={centerY}, Altitude={altitude}");
     }
 
     private void CreateTextMarker(string text, Vector3 position, string name, Color color, Transform parent)

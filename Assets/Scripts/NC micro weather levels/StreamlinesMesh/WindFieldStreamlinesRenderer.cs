@@ -28,6 +28,10 @@ public class WindFieldStreamlinesRenderer : MonoBehaviour
     // Private field to track previous terrain toggle state
     private bool previousToggleTerrain = true;
     
+    // Private fields to track previous preference checkbox states
+    private bool previousSaveToPreferences = false;
+    private bool previousResetPreferences = false;
+    
     [Header("Internal References")]
     [System.NonSerialized]
     public bool useWorldSpace = true;
@@ -110,6 +114,9 @@ public class WindFieldStreamlinesRenderer : MonoBehaviour
     [Header("Material Settings")]
     public Material lineMaterial;   
     public Texture2D lineTexture;
+    
+    [Header("Compass")]
+    public CompassMarkers compassMarkers; // Reference to compass markers component
     // Single mesh components (like WindFieldMeshNc)
     private MeshFilter meshFilter;
     private MeshRenderer meshRenderer;
@@ -121,6 +128,8 @@ public class WindFieldStreamlinesRenderer : MonoBehaviour
     [Header("Preferences")]
     [Tooltip("Set to true to save current settings to preferences")]
     public bool saveToPreferences = false;
+    [Tooltip("Set to true to reset all settings to Unity inspector defaults and clear saved preferences")]
+    public bool resetPreferences = false;
     
     
     void Awake()
@@ -135,12 +144,19 @@ public class WindFieldStreamlinesRenderer : MonoBehaviour
     
     void Start()
     {
+        // Save initial Unity inspector values with index 0
+        SaveToPreferences(0);
+        
         LoadFromPreferences();
         SetupLineMesh();
         
         // Apply initial terrain toggle state
         ApplyTerrainToggle();
         previousToggleTerrain = toggleTerrain;
+        
+        // Initialize previous preference states
+        previousSaveToPreferences = saveToPreferences;
+        previousResetPreferences = resetPreferences;
         
         // Simple check - if calculator and data are ready, proceed immediately
         CheckAndSetup();
@@ -159,6 +175,12 @@ public class WindFieldStreamlinesRenderer : MonoBehaviour
             worldBoundsMax = streamlinesCalculator.dataContainer.gridMax;
             Debug.Log($"Using grid bounds: {worldBoundsMin} to {worldBoundsMax}");
             
+            // Create compass markers using the separate component
+            if (compassMarkers != null)
+            {
+                compassMarkers.CreateMarkers(worldBoundsMin.x, worldBoundsMax.x, worldBoundsMin.z, worldBoundsMax.z, worldBoundsMin.y);
+            }
+            
             // If calculator already has streamlines, use them
             if (streamlinesCalculator.allStreamlineWorldCoords.Count > 0)
             {
@@ -175,7 +197,10 @@ public class WindFieldStreamlinesRenderer : MonoBehaviour
         if (streamlinesCalculator != null)
         {
             streamlinesCalculator.OnStreamlinesUpdated -= UpdateStreamlines;
-            SaveToPreferences();
+            if (saveToPreferences)
+            {
+                SaveToPreferences();
+            }
         }
     }
     
@@ -911,6 +936,24 @@ public class WindFieldStreamlinesRenderer : MonoBehaviour
             previousToggleTerrain = toggleTerrain;
         }
         
+        // Handle save preferences - only when checkbox changes from false to true
+        if (saveToPreferences && !previousSaveToPreferences)
+        {
+            SaveToPreferences();
+            resetPreferences = false; // Uncheck reset when save is checked
+            previousResetPreferences = false; // Update previous state
+        }
+        previousSaveToPreferences = saveToPreferences;
+        
+        // Handle reset preferences - only when checkbox changes from false to true
+        if (resetPreferences && !previousResetPreferences)
+        {
+            ResetToDefaults();
+            saveToPreferences = false; // Uncheck save when reset is checked
+            previousSaveToPreferences = false; // Update previous state
+        }
+        previousResetPreferences = resetPreferences;
+        
         // Update material properties every frame to support runtime changes from inspector
         UpdateMaterialProperties();
     }
@@ -923,84 +966,136 @@ public class WindFieldStreamlinesRenderer : MonoBehaviour
     }
     private void SaveToPreferences()
     {
+        SaveToPreferences(1); // Default to index 1 for regular saves
+    }
+    
+    private void SaveToPreferences(int index)
+    {
+        string suffix = "_" + index;
+        
         // Save all exposed parameters
-        PlayerPrefs.SetInt(PREFS_PREFIX + "enableFlowAnimation", enableFlowAnimation ? 1 : 0);
-        PlayerPrefs.SetFloat(PREFS_PREFIX + "streamlinesWidth", streamlinesWidth);
-        PlayerPrefs.SetFloat(PREFS_PREFIX + "textureAnimationSpeed", textureAnimationSpeed);
-        PlayerPrefs.SetFloat(PREFS_PREFIX + "transparency", transparency);
-        PlayerPrefs.SetFloat(PREFS_PREFIX + "flowTiling", flowTiling);
+        PlayerPrefs.SetInt(PREFS_PREFIX + "enableFlowAnimation" + suffix, enableFlowAnimation ? 1 : 0);
+        PlayerPrefs.SetFloat(PREFS_PREFIX + "streamlinesWidth" + suffix, streamlinesWidth);
+        PlayerPrefs.SetFloat(PREFS_PREFIX + "textureAnimationSpeed" + suffix, textureAnimationSpeed);
+        PlayerPrefs.SetFloat(PREFS_PREFIX + "transparency" + suffix, transparency);
+        PlayerPrefs.SetFloat(PREFS_PREFIX + "flowTiling" + suffix, flowTiling);
         
         // Save terrain toggle
-        PlayerPrefs.SetInt(PREFS_PREFIX + "toggleTerrain", toggleTerrain ? 1 : 0);
+        PlayerPrefs.SetInt(PREFS_PREFIX + "toggleTerrain" + suffix, toggleTerrain ? 1 : 0);
         
-        PlayerPrefs.SetFloat(PREFS_PREFIX + "maxAltitude", maxAltitude);
-        PlayerPrefs.SetFloat(PREFS_PREFIX + "minAltitude", minAltitude);
-        PlayerPrefs.SetFloat(PREFS_PREFIX + "minLowestAltitude", minLowestAltitude);
-        PlayerPrefs.SetFloat(PREFS_PREFIX + "boundsLeft", boundsLeft);
-        PlayerPrefs.SetFloat(PREFS_PREFIX + "boundsRight", boundsRight);
-        PlayerPrefs.SetFloat(PREFS_PREFIX + "boundsFront", boundsFront);
-        PlayerPrefs.SetFloat(PREFS_PREFIX + "boundsBack", boundsBack);
+        // Save preference checkboxes
+        PlayerPrefs.SetInt(PREFS_PREFIX + "saveToPreferences" + suffix, saveToPreferences ? 1 : 0);
+        PlayerPrefs.SetInt(PREFS_PREFIX + "resetPreferences" + suffix, resetPreferences ? 1 : 0);
         
-        PlayerPrefs.SetFloat(PREFS_PREFIX + "speedTrimLower", speedTrimLower);
-        PlayerPrefs.SetFloat(PREFS_PREFIX + "speedTrimUpper", speedTrimUpper);
+        PlayerPrefs.SetFloat(PREFS_PREFIX + "maxAltitude" + suffix, maxAltitude);
+        PlayerPrefs.SetFloat(PREFS_PREFIX + "minAltitude" + suffix, minAltitude);
+        PlayerPrefs.SetFloat(PREFS_PREFIX + "minLowestAltitude" + suffix, minLowestAltitude);
+        PlayerPrefs.SetFloat(PREFS_PREFIX + "boundsLeft" + suffix, boundsLeft);
+        PlayerPrefs.SetFloat(PREFS_PREFIX + "boundsRight" + suffix, boundsRight);
+        PlayerPrefs.SetFloat(PREFS_PREFIX + "boundsFront" + suffix, boundsFront);
+        PlayerPrefs.SetFloat(PREFS_PREFIX + "boundsBack" + suffix, boundsBack);
         
-        PlayerPrefs.SetFloat(PREFS_PREFIX + "flowDirectionGradientThreshold", flowDirectionGradientThreshold);
+        PlayerPrefs.SetFloat(PREFS_PREFIX + "speedTrimLower" + suffix, speedTrimLower);
+        PlayerPrefs.SetFloat(PREFS_PREFIX + "speedTrimUpper" + suffix, speedTrimUpper);
         
-        PlayerPrefs.SetInt(PREFS_PREFIX + "useGlobalMagnitudeRange", useGlobalMagnitudeRange ? 1 : 0);
-        PlayerPrefs.SetFloat(PREFS_PREFIX + "globalMinWindMagnitude", globalMinWindMagnitude);
-        PlayerPrefs.SetFloat(PREFS_PREFIX + "globalMaxWindMagnitude", globalMaxWindMagnitude);
+        PlayerPrefs.SetFloat(PREFS_PREFIX + "flowDirectionGradientThreshold" + suffix, flowDirectionGradientThreshold);
+        
+        PlayerPrefs.SetInt(PREFS_PREFIX + "useGlobalMagnitudeRange" + suffix, useGlobalMagnitudeRange ? 1 : 0);
+        PlayerPrefs.SetFloat(PREFS_PREFIX + "globalMinWindMagnitude" + suffix, globalMinWindMagnitude);
+        PlayerPrefs.SetFloat(PREFS_PREFIX + "globalMaxWindMagnitude" + suffix, globalMaxWindMagnitude);
         
         // Save gradient colors
-        SaveColor(PREFS_PREFIX + "gradientColor0", gradientColor0);
-        SaveColor(PREFS_PREFIX + "gradientColor1", gradientColor1);
-        SaveColor(PREFS_PREFIX + "gradientColor2", gradientColor2);
-        SaveColor(PREFS_PREFIX + "gradientColor3", gradientColor3);
-        SaveColor(PREFS_PREFIX + "gradientColor4", gradientColor4);
-        SaveColor(PREFS_PREFIX + "gradientColor5", gradientColor5);
+        SaveColor(PREFS_PREFIX + "gradientColor0" + suffix, gradientColor0);
+        SaveColor(PREFS_PREFIX + "gradientColor1" + suffix, gradientColor1);
+        SaveColor(PREFS_PREFIX + "gradientColor2" + suffix, gradientColor2);
+        SaveColor(PREFS_PREFIX + "gradientColor3" + suffix, gradientColor3);
+        SaveColor(PREFS_PREFIX + "gradientColor4" + suffix, gradientColor4);
+        SaveColor(PREFS_PREFIX + "gradientColor5" + suffix, gradientColor5);
         
         PlayerPrefs.Save();
-        Debug.Log("WindFieldStreamlinesRenderer settings saved to preferences!");
+        
+        if (index == 0)
+        {
+            Debug.Log("WindFieldStreamlinesRenderer initial Unity inspector values saved!");
+        }
+        else
+        {
+            Debug.Log("WindFieldStreamlinesRenderer settings saved to preferences!");
+        }
     }
     
     [ContextMenu("Load from Preferences")]
     public void LoadFromPreferences()
     {
+        LoadFromPreferences(1); // Default to index 1 for regular loads
+    }
+    
+    public void LoadFromPreferences(int index)
+    {
+        string suffix = "_" + index;
+        
         // Load all exposed parameters
-        enableFlowAnimation = PlayerPrefs.GetInt(PREFS_PREFIX + "enableFlowAnimation", enableFlowAnimation ? 1 : 0) == 1;
-        streamlinesWidth = PlayerPrefs.GetFloat(PREFS_PREFIX + "streamlinesWidth", streamlinesWidth);
-        textureAnimationSpeed = PlayerPrefs.GetFloat(PREFS_PREFIX + "textureAnimationSpeed", textureAnimationSpeed);
-        transparency = PlayerPrefs.GetFloat(PREFS_PREFIX + "transparency", transparency);
-        flowTiling = PlayerPrefs.GetFloat(PREFS_PREFIX + "flowTiling", flowTiling);
+        enableFlowAnimation = PlayerPrefs.GetInt(PREFS_PREFIX + "enableFlowAnimation" + suffix, enableFlowAnimation ? 1 : 0) == 1;
+        streamlinesWidth = PlayerPrefs.GetFloat(PREFS_PREFIX + "streamlinesWidth" + suffix, streamlinesWidth);
+        textureAnimationSpeed = PlayerPrefs.GetFloat(PREFS_PREFIX + "textureAnimationSpeed" + suffix, textureAnimationSpeed);
+        transparency = PlayerPrefs.GetFloat(PREFS_PREFIX + "transparency" + suffix, transparency);
+        flowTiling = PlayerPrefs.GetFloat(PREFS_PREFIX + "flowTiling" + suffix, flowTiling);
         
         // Load terrain toggle
-        toggleTerrain = PlayerPrefs.GetInt(PREFS_PREFIX + "toggleTerrain", toggleTerrain ? 1 : 0) == 1;
+        toggleTerrain = PlayerPrefs.GetInt(PREFS_PREFIX + "toggleTerrain" + suffix, toggleTerrain ? 1 : 0) == 1;
         
-        maxAltitude = PlayerPrefs.GetFloat(PREFS_PREFIX + "maxAltitude", maxAltitude);
-        minAltitude = PlayerPrefs.GetFloat(PREFS_PREFIX + "minAltitude", minAltitude);
-        minLowestAltitude = PlayerPrefs.GetFloat(PREFS_PREFIX + "minLowestAltitude", minLowestAltitude);
-        boundsLeft = PlayerPrefs.GetFloat(PREFS_PREFIX + "boundsLeft", boundsLeft);
-        boundsRight = PlayerPrefs.GetFloat(PREFS_PREFIX + "boundsRight", boundsRight);
-        boundsFront = PlayerPrefs.GetFloat(PREFS_PREFIX + "boundsFront", boundsFront);
-        boundsBack = PlayerPrefs.GetFloat(PREFS_PREFIX + "boundsBack", boundsBack);
+        // Load preference checkboxes
+        saveToPreferences = PlayerPrefs.GetInt(PREFS_PREFIX + "saveToPreferences" + suffix, saveToPreferences ? 1 : 0) == 1;
+        resetPreferences = PlayerPrefs.GetInt(PREFS_PREFIX + "resetPreferences" + suffix, resetPreferences ? 1 : 0) == 1;
         
-        speedTrimLower = PlayerPrefs.GetFloat(PREFS_PREFIX + "speedTrimLower", speedTrimLower);
-        speedTrimUpper = PlayerPrefs.GetFloat(PREFS_PREFIX + "speedTrimUpper", speedTrimUpper);
+        maxAltitude = PlayerPrefs.GetFloat(PREFS_PREFIX + "maxAltitude" + suffix, maxAltitude);
+        minAltitude = PlayerPrefs.GetFloat(PREFS_PREFIX + "minAltitude" + suffix, minAltitude);
+        minLowestAltitude = PlayerPrefs.GetFloat(PREFS_PREFIX + "minLowestAltitude" + suffix, minLowestAltitude);
+        boundsLeft = PlayerPrefs.GetFloat(PREFS_PREFIX + "boundsLeft" + suffix, boundsLeft);
+        boundsRight = PlayerPrefs.GetFloat(PREFS_PREFIX + "boundsRight" + suffix, boundsRight);
+        boundsFront = PlayerPrefs.GetFloat(PREFS_PREFIX + "boundsFront" + suffix, boundsFront);
+        boundsBack = PlayerPrefs.GetFloat(PREFS_PREFIX + "boundsBack" + suffix, boundsBack);
         
-        flowDirectionGradientThreshold = PlayerPrefs.GetFloat(PREFS_PREFIX + "flowDirectionGradientThreshold", flowDirectionGradientThreshold);
+        speedTrimLower = PlayerPrefs.GetFloat(PREFS_PREFIX + "speedTrimLower" + suffix, speedTrimLower);
+        speedTrimUpper = PlayerPrefs.GetFloat(PREFS_PREFIX + "speedTrimUpper" + suffix, speedTrimUpper);
         
-        useGlobalMagnitudeRange = PlayerPrefs.GetInt(PREFS_PREFIX + "useGlobalMagnitudeRange", useGlobalMagnitudeRange ? 1 : 0) == 1;
-        globalMinWindMagnitude = PlayerPrefs.GetFloat(PREFS_PREFIX + "globalMinWindMagnitude", globalMinWindMagnitude);
-        globalMaxWindMagnitude = PlayerPrefs.GetFloat(PREFS_PREFIX + "globalMaxWindMagnitude", globalMaxWindMagnitude);
+        flowDirectionGradientThreshold = PlayerPrefs.GetFloat(PREFS_PREFIX + "flowDirectionGradientThreshold" + suffix, flowDirectionGradientThreshold);
+        
+        useGlobalMagnitudeRange = PlayerPrefs.GetInt(PREFS_PREFIX + "useGlobalMagnitudeRange" + suffix, useGlobalMagnitudeRange ? 1 : 0) == 1;
+        globalMinWindMagnitude = PlayerPrefs.GetFloat(PREFS_PREFIX + "globalMinWindMagnitude" + suffix, globalMinWindMagnitude);
+        globalMaxWindMagnitude = PlayerPrefs.GetFloat(PREFS_PREFIX + "globalMaxWindMagnitude" + suffix, globalMaxWindMagnitude);
         
         // Load gradient colors
-        gradientColor0 = LoadColor(PREFS_PREFIX + "gradientColor0", gradientColor0);
-        gradientColor1 = LoadColor(PREFS_PREFIX + "gradientColor1", gradientColor1);
-        gradientColor2 = LoadColor(PREFS_PREFIX + "gradientColor2", gradientColor2);
-        gradientColor3 = LoadColor(PREFS_PREFIX + "gradientColor3", gradientColor3);
-        gradientColor4 = LoadColor(PREFS_PREFIX + "gradientColor4", gradientColor4);
-        gradientColor5 = LoadColor(PREFS_PREFIX + "gradientColor5", gradientColor5);
+        gradientColor0 = LoadColor(PREFS_PREFIX + "gradientColor0" + suffix, gradientColor0);
+        gradientColor1 = LoadColor(PREFS_PREFIX + "gradientColor1" + suffix, gradientColor1);
+        gradientColor2 = LoadColor(PREFS_PREFIX + "gradientColor2" + suffix, gradientColor2);
+        gradientColor3 = LoadColor(PREFS_PREFIX + "gradientColor3" + suffix, gradientColor3);
+        gradientColor4 = LoadColor(PREFS_PREFIX + "gradientColor4" + suffix, gradientColor4);
+        gradientColor5 = LoadColor(PREFS_PREFIX + "gradientColor5" + suffix, gradientColor5);
         
-        Debug.Log("WindFieldStreamlinesRenderer settings loaded from preferences!");
+        if (index == 0)
+        {
+            Debug.Log("WindFieldStreamlinesRenderer Unity inspector defaults loaded!");
+        }
+        else
+        {
+            Debug.Log("WindFieldStreamlinesRenderer settings loaded from preferences!");
+        }
+    }
+    
+    [ContextMenu("Reset to Defaults")]
+    public void ResetToDefaults()
+    {
+        LoadFromPreferences(0); // Load from the initial Unity inspector values (index 0)
+        
+        // Apply terrain toggle
+        ApplyTerrainToggle();
+        previousToggleTerrain = toggleTerrain;
+        
+        // Update material properties
+        UpdateMaterialProperties();
+        
+        Debug.Log("WindFieldStreamlinesRenderer settings reset to Unity inspector defaults!");
     }
     
     private void SaveColor(string key, Color color)

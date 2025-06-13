@@ -139,7 +139,8 @@ public class StreamlinesRuntimeInspectorController : MonoBehaviour
                     targetScript = targetRenderer,
                     variableNames = new string[] 
                     {
-                        "saveToPreferences"
+                        "saveToPreferences",
+                        "resetPreferences"
                     }
                 });
             }

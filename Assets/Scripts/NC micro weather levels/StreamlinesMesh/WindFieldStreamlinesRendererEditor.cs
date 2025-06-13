@@ -31,9 +31,9 @@ public class WindFieldStreamlinesRendererEditor : IRuntimeInspectorCustomEditor
         CreateHeaderSeparator(parent, "Gradient Colors");
         parent.CreateDrawersForVariables("gradientColor0", "gradientColor1", "gradientColor2", "gradientColor3", "gradientColor4", "gradientColor5");
         
-        // Preferences Section - Just show the saveToPreferences field
+        // Preferences Section - Show both preference fields
         CreateHeaderSeparator(parent, "Preferences");
-        parent.CreateDrawersForVariables("saveToPreferences");
+        parent.CreateDrawersForVariables("saveToPreferences", "resetPreferences");
     }
 
     private void CreateHeaderSeparator(ObjectField parent, string headerText)
