@@ -87,6 +87,9 @@ public class WindFieldStreamlinesRenderer : MonoBehaviour
     [Tooltip("Flow Direction Change Threshold (0=show all, 1=show only most curved sections)")]
     public float flowDirectionGradientThreshold = 0.0f;
     
+    [Range(0, 1)]
+    [Tooltip("Streamlines density (0 = hide all streamlines, 1 = show all streamlines)")]
+    public float streamlinesDensity = 1.0f;
 
     [Header("Global Color Mapping")]
      [Tooltip("Use global magnitude range instead of data-specific range for color mapping")]
@@ -349,6 +352,7 @@ public class WindFieldStreamlinesRenderer : MonoBehaviour
             float lengthMultiplier = 1f;
             float randomTextureOffset = 0f;
             float lowestAltitude = 0f;
+            float randomStreamlineID = 0f;
             
             if (streamlinesCalculator != null && 
                 streamlineIndex < streamlinesCalculator.allNormalizedMagnitudes.Count &&
@@ -357,7 +361,8 @@ public class WindFieldStreamlinesRenderer : MonoBehaviour
                 streamlineIndex < streamlinesCalculator.allAverageMagnitudeNormalizations.Count &&
                 streamlineIndex < streamlinesCalculator.allStreamlineLengthMultipliers.Count &&
                 streamlineIndex < streamlinesCalculator.allRandomTextureOffsets.Count &&
-                streamlineIndex < streamlinesCalculator.allLowestAltitudes.Count)
+                streamlineIndex < streamlinesCalculator.allLowestAltitudes.Count &&
+                streamlineIndex < streamlinesCalculator.allRandomStreamlineIDs.Count)
             {
                 normalizedMagnitudes = streamlinesCalculator.allNormalizedMagnitudes[streamlineIndex];
                 normalizedMsl = streamlinesCalculator.allNormalizedMsl[streamlineIndex];
@@ -366,6 +371,7 @@ public class WindFieldStreamlinesRenderer : MonoBehaviour
                 lengthMultiplier = streamlinesCalculator.allStreamlineLengthMultipliers[streamlineIndex];
                 randomTextureOffset = streamlinesCalculator.allRandomTextureOffsets[streamlineIndex];
                 lowestAltitude = streamlinesCalculator.allLowestAltitudes[streamlineIndex];
+                randomStreamlineID = streamlinesCalculator.allRandomStreamlineIDs[streamlineIndex];
             }
             
             // Normalize lowest altitude to 0-1 range using world bounds
@@ -470,7 +476,7 @@ public class WindFieldStreamlinesRenderer : MonoBehaviour
                 uv2s.Add(new Vector2(magNorm1, normalizedAverageWindSpeed)); // UV2.x = magnitude, UV2.y = normalized average wind speed
                 uv3s.Add(new Vector2(mslNorm1, cumulativeDistances[i])); // UV3.x = MSL normalization, UV3.y = actual cumulative distance
                 uv4s.Add(new Vector2(dirChange1, normalizedLowestAltitude)); // UV4.x = direction change, UV4.y = normalized lowest altitude
-                uv5s.Add(new Vector2(randomTextureOffset, normalizedLowestAltitude)); // UV5 for random texture offset
+                uv5s.Add(new Vector2(randomTextureOffset, randomStreamlineID)); // UV5.x = random texture offset, UV5.y = random streamline ID
                 colors.Add(Color.white);
                 
                 // Top left vertex (point1, side 1)
@@ -480,7 +486,7 @@ public class WindFieldStreamlinesRenderer : MonoBehaviour
                 uv2s.Add(new Vector2(magNorm1, normalizedAverageWindSpeed)); // UV2.x = magnitude, UV2.y = normalized average wind speed
                 uv3s.Add(new Vector2(mslNorm1, cumulativeDistances[i])); // UV3.x = MSL normalization, UV3.y = actual cumulative distance
                 uv4s.Add(new Vector2(dirChange1, normalizedLowestAltitude)); // UV4.x = direction change, UV4.y = normalized lowest altitude
-                uv5s.Add(new Vector2(randomTextureOffset, normalizedLowestAltitude)); // UV5 for random texture offset
+                uv5s.Add(new Vector2(randomTextureOffset, randomStreamlineID)); // UV5.x = random texture offset, UV5.y = random streamline ID
                 colors.Add(Color.white);
                 
                 // Top right vertex (point2, side 1)
@@ -490,7 +496,7 @@ public class WindFieldStreamlinesRenderer : MonoBehaviour
                 uv2s.Add(new Vector2(magNorm2, normalizedAverageWindSpeed)); // UV2.x = magnitude, UV2.y = normalized average wind speed
                 uv3s.Add(new Vector2(mslNorm2, cumulativeDistances[i + 1])); // UV3.x = MSL normalization, UV3.y = actual cumulative distance
                 uv4s.Add(new Vector2(dirChange2, normalizedLowestAltitude)); // UV4.x = direction change, UV4.y = normalized lowest altitude
-                uv5s.Add(new Vector2(randomTextureOffset, normalizedLowestAltitude)); // UV5 for random texture offset
+                uv5s.Add(new Vector2(randomTextureOffset, randomStreamlineID)); // UV5.x = random texture offset, UV5.y = random streamline ID
                 colors.Add(Color.white);
                 
                 // Bottom right vertex (point2, side 0)
@@ -500,7 +506,7 @@ public class WindFieldStreamlinesRenderer : MonoBehaviour
                 uv2s.Add(new Vector2(magNorm2, normalizedAverageWindSpeed)); // UV2.x = magnitude, UV2.y = normalized average wind speed
                 uv3s.Add(new Vector2(mslNorm2, cumulativeDistances[i + 1])); // UV3.x = MSL normalization, UV3.y = actual cumulative distance
                 uv4s.Add(new Vector2(dirChange2, normalizedLowestAltitude)); // UV4.x = direction change, UV4.y = normalized lowest altitude
-                uv5s.Add(new Vector2(randomTextureOffset, normalizedLowestAltitude)); // UV5 for random texture offset
+                uv5s.Add(new Vector2(randomTextureOffset, randomStreamlineID)); // UV5.x = random texture offset, UV5.y = random streamline ID
                 colors.Add(Color.white);
                 
                 // Add triangles (two triangles per quad)
@@ -532,7 +538,7 @@ public class WindFieldStreamlinesRenderer : MonoBehaviour
             lineMesh.SetUVs(1, uv2s); // UV2 for magnitude normalization
             lineMesh.SetUVs(2, uv3s); // UV3 for MSL normalization
             lineMesh.SetUVs(3, uv4s); // UV4 for direction changes
-            lineMesh.SetUVs(4, uv5s); // UV5 for random texture offset
+            lineMesh.SetUVs(4, uv5s); // UV5.x = random texture offset, UV5.y = random streamline ID
             lineMesh.SetColors(colors);
             
             // Recalculate bounds
@@ -563,6 +569,7 @@ public class WindFieldStreamlinesRenderer : MonoBehaviour
             mat.SetFloat("_SpeedTrimLower", speedTrimLower);
             mat.SetFloat("_SpeedTrimUpper", speedTrimUpper);
             mat.SetFloat("_FlowDirectionChangeThreshold", flowDirectionGradientThreshold);
+            mat.SetFloat("_StreamlinesDensity", streamlinesDensity);
             mat.SetVector("_WorldBoundsMin", worldBoundsMin);
             mat.SetVector("_WorldBoundsMax", worldBoundsMax);
             
@@ -743,6 +750,12 @@ public class WindFieldStreamlinesRenderer : MonoBehaviour
     public void SetFlowDirectionChangeTrim(float threshold)
     {
         flowDirectionGradientThreshold = Mathf.Clamp01(threshold);
+        UpdateMaterialProperties();
+    }
+
+    public void SetStreamlinesDensity(float density)
+    {
+        streamlinesDensity = Mathf.Clamp01(density);
         UpdateMaterialProperties();
     }
 
@@ -1019,6 +1032,7 @@ public class WindFieldStreamlinesRenderer : MonoBehaviour
         PlayerPrefs.SetFloat(PREFS_PREFIX + "speedTrimUpper" + suffix, speedTrimUpper);
         
         PlayerPrefs.SetFloat(PREFS_PREFIX + "flowDirectionGradientThreshold" + suffix, flowDirectionGradientThreshold);
+        PlayerPrefs.SetFloat(PREFS_PREFIX + "streamlinesDensity" + suffix, streamlinesDensity);
         
         PlayerPrefs.SetInt(PREFS_PREFIX + "useGlobalMagnitudeRange" + suffix, useGlobalMagnitudeRange ? 1 : 0);
         PlayerPrefs.SetFloat(PREFS_PREFIX + "globalMinWindMagnitude" + suffix, globalMinWindMagnitude);
@@ -1084,6 +1098,7 @@ public class WindFieldStreamlinesRenderer : MonoBehaviour
         speedTrimUpper = PlayerPrefs.GetFloat(PREFS_PREFIX + "speedTrimUpper" + suffix, speedTrimUpper);
         
         flowDirectionGradientThreshold = PlayerPrefs.GetFloat(PREFS_PREFIX + "flowDirectionGradientThreshold" + suffix, flowDirectionGradientThreshold);
+        streamlinesDensity = PlayerPrefs.GetFloat(PREFS_PREFIX + "streamlinesDensity" + suffix, streamlinesDensity);
         
         useGlobalMagnitudeRange = PlayerPrefs.GetInt(PREFS_PREFIX + "useGlobalMagnitudeRange" + suffix, useGlobalMagnitudeRange ? 1 : 0) == 1;
         globalMinWindMagnitude = PlayerPrefs.GetFloat(PREFS_PREFIX + "globalMinWindMagnitude" + suffix, globalMinWindMagnitude);

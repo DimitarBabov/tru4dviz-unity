@@ -30,6 +30,7 @@ Shader "Custom/WindStreamlineTexture"
         _SpeedTrimLower("Speed Trim Lower", Range(0, 1)) = 0.0
         _SpeedTrimUpper("Speed Trim Upper", Range(0, 1)) = 1.0
         _FlowDirectionChangeThreshold("Flow Direction Change Threshold", Range(0, 0.15)) = 0.0
+        _StreamlinesDensity("Streamlines Density", Range(0, 1)) = 1.0
         
         [Header(Width Variation)]
         [Toggle] _EnableWidthTrim("Enable Width Trimming", Float) = 1.0
@@ -119,6 +120,7 @@ Shader "Custom/WindStreamlineTexture"
             float _SpeedTrimLower;
             float _SpeedTrimUpper;
             float _FlowDirectionChangeThreshold;
+            float _StreamlinesDensity;
             float _EnableWidthTrim;
             float _MinWidthScale;
             float4 _WorldBoundsMin;
@@ -145,6 +147,7 @@ Shader "Custom/WindStreamlineTexture"
                 // UV4.x = Flow direction change intensity (0-1, sine-based: 0=straight, 1=90° turn, realistic wind flow)
                 // UV4.y = Normalized lowest altitude per streamline (0-1) for trimming
                 // UV5.x = Random texture offset per streamline (0-randomOffsetRange) for pattern variation
+                // UV5.y = Random streamline ID (0-1) for random trimming
                 
                 // Transform vertex to world space
                 float3 worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
@@ -268,8 +271,20 @@ Shader "Custom/WindStreamlineTexture"
                     directionTrim = 0.0; // Hide sections below threshold flow direction change
                 }
                 
+                // Apply streamlines density control
+                // When density = 1.0, show all streamlines
+                // When density = 0.5, show ~50% of streamlines randomly
+                // When density = 0.0, hide all streamlines
+                float randomTrim = 1.0;
+                float randomStreamlineID = i.uv5.y; // Random ID per streamline (0-1)
+                
+                if (randomStreamlineID > _StreamlinesDensity)
+                {
+                    randomTrim = 0.0; // Hide streamlines above density threshold
+                }
+                
                 // Combine all trimming factors
-                float trimFactor = spatialTrim * altitudeTrim * lowestAltitudeTrim * speedTrim * directionTrim;
+                float trimFactor = spatialTrim * altitudeTrim * lowestAltitudeTrim * speedTrim * directionTrim * randomTrim;
                 
                 // Check altitude bounds using MSL data (UV3.x)
                 float mslHeight = i.uv3.x;
@@ -287,6 +302,10 @@ Shader "Custom/WindStreamlineTexture"
                 
                 // Check speed trim bounds
                 if (speed < _SpeedTrimLower || speed > _SpeedTrimUpper)
+                    discard;
+                
+                // Check streamlines density
+                if (randomStreamlineID > _StreamlinesDensity)
                     discard;
                 
                 // Sample the flow texture (greyscale - only use alpha)

@@ -57,6 +57,7 @@ public class WindFieldStreamlinesCalculator : MonoBehaviour
     public List<float> allRandomTextureOffsets = new List<float>(); // Random UV offsets per streamline
     public List<float> allAverageCurvatures = new List<float>(); // Average curvature per streamline for threshold filtering
     public List<float> allLowestAltitudes = new List<float>(); // Lowest altitude (Y coordinate) per streamline for trimming
+    public List<float> allRandomStreamlineIDs = new List<float>(); // Random ID (0-1) per streamline for random trimming
     
     [Header("Normalization Data")]
     private float globalMinMsl = float.MaxValue;
@@ -405,6 +406,9 @@ public class WindFieldStreamlinesCalculator : MonoBehaviour
         // Generate random texture offset for this streamline
         float randomTextureOffset = useRandomTextureOffsets ? Random.Range(0f, randomOffsetRange) : 0f;
         
+        // Generate random streamline ID for trimming (0-1 range)
+        float randomStreamlineID = Random.Range(0f, 1f);
+        
         // Calculate lowest altitude for this streamline
         float lowestAltitude = float.MaxValue;
         foreach (Vector3 worldPos in worldCoords)
@@ -430,6 +434,7 @@ public class WindFieldStreamlinesCalculator : MonoBehaviour
             allStreamlineLengthMultipliers.Add(lengthMultiplier);
             allRandomTextureOffsets.Add(randomTextureOffset);
             allLowestAltitudes.Add(lowestAltitude);
+            allRandomStreamlineIDs.Add(randomStreamlineID);
         }
     }
     
@@ -831,6 +836,7 @@ public class WindFieldStreamlinesCalculator : MonoBehaviour
         allStreamlineLengthMultipliers.Clear();
         allRandomTextureOffsets.Clear();
         allLowestAltitudes.Clear();
+        allRandomStreamlineIDs.Clear();
         
         globalMinMsl = float.MaxValue;
         globalMaxMsl = float.MinValue;
@@ -1007,6 +1013,7 @@ public class WindFieldStreamlinesCalculator : MonoBehaviour
         List<float> filteredStreamlineLengthMultipliers = new List<float>();
         List<float> filteredRandomTextureOffsets = new List<float>();
         List<float> filteredLowestAltitudes = new List<float>();
+        List<float> filteredRandomStreamlineIDs = new List<float>();
         
         int originalCount = allStreamlinePaths.Count;
         int keptCount = 0;
@@ -1044,6 +1051,7 @@ public class WindFieldStreamlinesCalculator : MonoBehaviour
                 filteredStreamlineLengthMultipliers.Add(allStreamlineLengthMultipliers[i]);
                 filteredRandomTextureOffsets.Add(allRandomTextureOffsets[i]);
                 filteredLowestAltitudes.Add(allLowestAltitudes[i]);
+                filteredRandomStreamlineIDs.Add(allRandomStreamlineIDs[i]);
                 keptCount++;
             }
         }
@@ -1061,6 +1069,7 @@ public class WindFieldStreamlinesCalculator : MonoBehaviour
         allStreamlineLengthMultipliers = filteredStreamlineLengthMultipliers;
         allRandomTextureOffsets = filteredRandomTextureOffsets;
         allLowestAltitudes = filteredLowestAltitudes;
+        allRandomStreamlineIDs = filteredRandomStreamlineIDs;
         
         float keepPercentage = originalCount > 0 ? (float)keptCount / originalCount * 100f : 0f;
         Debug.Log($"Curvature threshold filtering: kept {keptCount}/{originalCount} streamlines ({keepPercentage:F1}%)");

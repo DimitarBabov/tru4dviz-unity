@@ -510,7 +510,7 @@ public class NcDataContainerImgs : DataContainer
             int xIdx = uniqueX.FindIndex(x => Mathf.Approximately(x, x_from_origin[i]));
             int yIdx = uniqueY.FindIndex(y => Mathf.Approximately(y, y_from_origin[i]));
             int zIdx = uniqueZ.FindIndex(z => Mathf.Approximately(z, msl[i]));
-            
+           
             Vector3Int gridPos = new Vector3Int(xIdx, zIdx, yIdx);
             uniqueGridPositions[i] = gridPos;
             

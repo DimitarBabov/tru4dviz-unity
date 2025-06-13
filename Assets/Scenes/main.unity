@@ -461,6 +461,7 @@ MonoBehaviour:
   speedTrimLower: 0
   speedTrimUpper: 1
   flowDirectionGradientThreshold: 0
+  streamlinesDensity: 1
   useGlobalMagnitudeRange: 1
   globalMinWindMagnitude: 0
   globalMaxWindMagnitude: 20
@@ -510,6 +511,7 @@ MonoBehaviour:
   allRandomTextureOffsets: []
   allAverageCurvatures: []
   allLowestAltitudes: []
+  allRandomStreamlineIDs: []
   maxMagnitude: 1
   minStreamlineLength: 0
   maxStreamlineLength: 0
@@ -2158,9 +2160,7 @@ MonoBehaviour:
   runtimeInspector: {fileID: 1297713892}
   scriptReferences: []
   targetRenderer: {fileID: 290740804}
-  targetStartPoints: {fileID: 290740807}
-  rendererToggleKey: 282
-  startPointsToggleKey: 283
+  toggleKey: 282
   startVisible: 1
 --- !u!4 &1361917812
 Transform:

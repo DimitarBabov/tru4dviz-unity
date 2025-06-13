@@ -21,11 +21,9 @@ public class StreamlinesRuntimeInspectorController : MonoBehaviour
     
     [Header("Default References")]
     public WindFieldStreamlinesRenderer targetRenderer;
-    public WindStartStreamlinePoints targetStartPoints;
     
     [Header("Controls")]
-    public KeyCode rendererToggleKey = KeyCode.F1;
-    public KeyCode startPointsToggleKey = KeyCode.F2;
+    public KeyCode toggleKey = KeyCode.F1;
     public bool startVisible = true;
     
     private ScriptReference currentlyInspected;
@@ -39,8 +37,7 @@ public class StreamlinesRuntimeInspectorController : MonoBehaviour
         if (targetRenderer == null)
             targetRenderer = FindObjectOfType<WindFieldStreamlinesRenderer>();
             
-        if (targetStartPoints == null)
-            targetStartPoints = FindObjectOfType<WindStartStreamlinePoints>();
+
             
         // Add default references if not already present
         if (scriptReferences.Count == 0)
@@ -91,14 +88,15 @@ public class StreamlinesRuntimeInspectorController : MonoBehaviour
                     }
                 });
 
-                // Flow Direction Gradient Section
+                // Flow Direction Gradient & Streamlines Density Section
                 scriptReferences.Add(new ScriptReference 
                 { 
-                    sectionName = "Flow Direction Gradient",
+                    sectionName = "~~~~~~~~~~~~~~~~~~",
                     targetScript = targetRenderer,
                     variableNames = new string[] 
                     {
-                        "flowDirectionGradientThreshold"
+                        "flowDirectionGradientThreshold",
+                        "streamlinesDensity"
                     }
                 });
 
@@ -157,72 +155,7 @@ public class StreamlinesRuntimeInspectorController : MonoBehaviour
                 });
             }
 
-            // Add WindStartStreamlinePoints sections
-            if (targetStartPoints != null)
-            {
-                // Point Generation Mode Section
-                scriptReferences.Add(new ScriptReference 
-                { 
-                    sectionName = "Point Generation Mode",
-                    targetScript = targetStartPoints,
-                    variableNames = new string[] 
-                    {
-                        "pointMode"
-                    }
-                });
-
-                // Wall Point Sampling Section
-                scriptReferences.Add(new ScriptReference 
-                { 
-                    sectionName = "Wall Point Sampling",
-                    targetScript = targetStartPoints,
-                    variableNames = new string[] 
-                    {
-                        "wallSamplingInterval"
-                    }
-                });
-
-                // Volume Point Sampling Section
-                scriptReferences.Add(new ScriptReference 
-                { 
-                    sectionName = "Volume Point Sampling",
-                    targetScript = targetStartPoints,
-                    variableNames = new string[] 
-                    {
-                        "numPointsX",
-                        "numPointsY",
-                        "numPointsZ",
-                        "irregularity",
-                        "irregularitySeed"
-                    }
-                });
-
-                // Random Volume Point Sampling Section
-                scriptReferences.Add(new ScriptReference 
-                { 
-                    sectionName = "Random Volume Point Sampling",
-                    targetScript = targetStartPoints,
-                    variableNames = new string[] 
-                    {
-                        "pointsPer100CubicMetersDensity",
-                        "randomSeedDensity",
-                        "heightDensityFalloff",
-                        "minDensityFraction"
-                    }
-                });
-
-                // Debug Section
-                scriptReferences.Add(new ScriptReference 
-                { 
-                    sectionName = "Debug",
-                    targetScript = targetStartPoints,
-                    variableNames = new string[] 
-                    {
-                        "showDebugInfo",
-                        "drawGizmos"
-                    }
-                });
-            }
+            // WindStartStreamlinePoints sections removed - only showing renderer sections
         }
         
         // Set up the runtime inspector
@@ -239,35 +172,20 @@ public class StreamlinesRuntimeInspectorController : MonoBehaviour
     
     void Update()
     {
-        // Toggle visibility and inspect renderer with F1
-        if (Input.GetKeyDown(rendererToggleKey))
+        // F1 toggles runtime inspector visibility
+        if (Input.GetKeyDown(toggleKey))
         {
             if (runtimeInspector != null)
             {
                 if (runtimeInspector.gameObject.activeSelf)
                 {
+                    // If visible, hide it
                     runtimeInspector.gameObject.SetActive(false);
                 }
                 else
                 {
+                    // If not visible, show first section
                     InspectFirstReference();
-                    runtimeInspector.gameObject.SetActive(true);
-                }
-            }
-        }
-        
-        // Toggle visibility and inspect start points with F2
-        if (Input.GetKeyDown(startPointsToggleKey))
-        {
-            if (runtimeInspector != null)
-            {
-                if (runtimeInspector.gameObject.activeSelf)
-                {
-                    runtimeInspector.gameObject.SetActive(false);
-                }
-                else
-                {
-                    InspectNextReference();
                     runtimeInspector.gameObject.SetActive(true);
                 }
             }

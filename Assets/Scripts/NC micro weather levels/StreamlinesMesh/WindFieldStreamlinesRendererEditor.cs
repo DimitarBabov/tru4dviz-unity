@@ -21,7 +21,7 @@ public class WindFieldStreamlinesRendererEditor : IRuntimeInspectorCustomEditor
         
         // Flow Direction Change Trimming Section
         CreateHeaderSeparator(parent, "Wind Direction Gradient");
-        parent.CreateDrawersForVariables("flowDirectionGradientThreshold");
+        parent.CreateDrawersForVariables("flowDirectionGradientThreshold", "streamlinesDensity");
         
         // Global Color Mapping Section
         CreateHeaderSeparator(parent, "Global Color Mapping");
