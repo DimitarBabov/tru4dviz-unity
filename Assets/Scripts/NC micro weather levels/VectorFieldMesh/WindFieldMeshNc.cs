@@ -9,6 +9,10 @@ public class WindFieldMeshNc : MonoBehaviour
     public float arrowScale = 1.5f; // Overall scale factor for arrows
     public DataContainer dataContainer;
     public CompassMarkers compassMarkers; // Reference to compass markers component
+    [Tooltip("If true, all arrows will have the same length but keep their color based on magnitude")]
+    public bool normalizeArrowLengths = false;
+    [Tooltip("Fixed length to use when arrows are normalized")]
+    public float normalizedArrowLength = 1.0f;
 
     public Vector3 lat_origin;
     public Vector3 lon_origin;
@@ -138,7 +142,7 @@ public class WindFieldMeshNc : MonoBehaviour
 
             // Calculate arrow orientation
             Vector3 windDir = windVec.normalized;
-            Vector3 basePos = tipPos + windDir * scaledLength;
+            Vector3 basePos = tipPos + windDir * arrowLength;
             
             // Create local coordinate system for the arrow
             Vector3 forward = windDir;
@@ -163,9 +167,7 @@ public class WindFieldMeshNc : MonoBehaviour
                 Debug.Log($"  Grid Cell Width: {gridCellWidth:F3}");
                 Debug.Log($"  Proportional Length: {scaledLength:F3}");
                 Debug.Log($"  Final Scaled Length: {scaledLength:F3}");
-                Debug.Log($"  Normalized Wind (u,w,v): ({uNorm:F3}, {wNorm:F3}, {vNorm:F3})");
-                Debug.Log($"  Physical Wind (u,w,v): ({uPhysical:F3}, {wPhysical:F3}, {vPhysical:F3}) m/s");
-                Debug.Log($"  Calculated Magnitude: {windVec.magnitude:F3} m/s (should match original: {mag:F3})");
+                Debug.Log($"  Wind Vector (u,w,v): ({uNorm:F3}, {wNorm:F3}, {vNorm:F3})");
                 Debug.Log($"  Start Point (tip): {tipPos}");
                 Debug.Log($"  End Point (base): {basePos}");
                 Debug.Log($"  Delta: {delta}");
