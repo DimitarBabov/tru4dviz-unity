@@ -132,6 +132,18 @@ public class StreamlinesRuntimeInspectorController : MonoBehaviour
                     }
                 });
 
+                // Solid Color Section
+                scriptReferences.Add(new ScriptReference 
+                { 
+                    sectionName = "Solid Color",
+                    targetScript = targetRenderer,
+                    variableNames = new string[] 
+                    {
+                        "solidColor",
+                        "solidColorBlend"
+                    }
+                });
+
                 // Preferences Section
                 scriptReferences.Add(new ScriptReference 
                 { 

@@ -8,6 +8,8 @@ Shader "Custom/WindStreamlineTexture"
         _Color3("Color3", Color) = (1,1,1,1)
         _Color4("Color4", Color) = (1,1,1,1)
         _Color5("Color5", Color) = (1,1,1,1)
+        _SolidColor("Solid Color", Color) = (1,1,1,1)
+        _SolidColorBlend("Solid Color Blend", Range(0, 1)) = 0.0
         _AlfaCorrection("Alpha Correction", Range(0, 1)) = 0.75
         _LineWidth ("Line Width", Float) = 0.1
         _TextureAnimationSpeed ("Texture Animation Speed", Float) = 1.0
@@ -94,6 +96,8 @@ Shader "Custom/WindStreamlineTexture"
             };
             
             fixed4 _Color0, _Color1, _Color2, _Color3, _Color4, _Color5;
+            fixed4 _SolidColor;
+            float _SolidColorBlend;
             float _AlfaCorrection;
             float _LineWidth;
             float _TextureAnimationSpeed;
@@ -373,8 +377,11 @@ Shader "Custom/WindStreamlineTexture"
                     gradientColor = (1 - x) * _Color4 + x * _Color5;
                 }
                 
-                // Use gradient color for RGB, texture alpha for flow pattern
-                fixed4 col = gradientColor;
+                // Blend between gradient color and solid color
+                fixed4 finalColor = lerp(gradientColor, _SolidColor, _SolidColorBlend);
+                
+                // Use blended color for RGB, texture alpha for flow pattern
+                fixed4 col = finalColor;
                 col.a *= finalAlpha; // Apply combined alpha (circle + processed texture)
                 
                 // Apply base color and alpha correction

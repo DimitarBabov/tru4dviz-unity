@@ -111,6 +111,13 @@ public class WindFieldStreamlinesRenderer : MonoBehaviour
     [Tooltip("Gradient color for maximum wind speeds (100% range)")]
     public Color gradientColor5 = new Color(1.0f, 0.0f, 0.0f, 1.0f); // Red
 
+    [Header("Solid Color")]
+    [Tooltip("Solid color to blend with gradient colors")]
+    public Color solidColor = new Color(1.0f, 1.0f, 1.0f, 1.0f); // White
+    [Range(0, 1)]
+    [Tooltip("Blend between gradient colors (0) and solid color (1)")]
+    public float solidColorBlend = 0.0f;
+
     [Header("Material Settings")]
     public Material lineMaterial;   
     public Texture2D lineTexture;
@@ -611,6 +618,10 @@ public class WindFieldStreamlinesRenderer : MonoBehaviour
             if (mat.HasProperty("_Color3")) mat.SetColor("_Color3", gradientColor3);
             if (mat.HasProperty("_Color4")) mat.SetColor("_Color4", gradientColor4);
             if (mat.HasProperty("_Color5")) mat.SetColor("_Color5", gradientColor5);
+            
+            // Set solid color properties
+            if (mat.HasProperty("_SolidColor")) mat.SetColor("_SolidColor", solidColor);
+            if (mat.HasProperty("_SolidColorBlend")) mat.SetFloat("_SolidColorBlend", solidColorBlend);
         }
     }
     
@@ -795,6 +806,19 @@ public class WindFieldStreamlinesRenderer : MonoBehaviour
         UpdateMaterialProperties();
     }
 
+    // Solid color setter methods
+    public void SetSolidColor(Color color)
+    {
+        solidColor = color;
+        UpdateMaterialProperties();
+    }
+
+    public void SetSolidColorBlend(float blend)
+    {
+        solidColorBlend = Mathf.Clamp01(blend);
+        UpdateMaterialProperties();
+    }
+
     // Global magnitude range control methods
     public void SetGlobalMagnitudeRange(float minMagnitude, float maxMagnitude)
     {
@@ -940,8 +964,6 @@ public class WindFieldStreamlinesRenderer : MonoBehaviour
         if (saveToPreferences && !previousSaveToPreferences)
         {
             SaveToPreferences();
-            resetPreferences = false; // Uncheck reset when save is checked
-            previousResetPreferences = false; // Update previous state
         }
         previousSaveToPreferences = saveToPreferences;
         
@@ -949,8 +971,6 @@ public class WindFieldStreamlinesRenderer : MonoBehaviour
         if (resetPreferences && !previousResetPreferences)
         {
             ResetToDefaults();
-            saveToPreferences = false; // Uncheck save when reset is checked
-            previousSaveToPreferences = false; // Update previous state
         }
         previousResetPreferences = resetPreferences;
         
@@ -1012,6 +1032,10 @@ public class WindFieldStreamlinesRenderer : MonoBehaviour
         SaveColor(PREFS_PREFIX + "gradientColor4" + suffix, gradientColor4);
         SaveColor(PREFS_PREFIX + "gradientColor5" + suffix, gradientColor5);
         
+        // Save solid color properties
+        SaveColor(PREFS_PREFIX + "solidColor" + suffix, solidColor);
+        PlayerPrefs.SetFloat(PREFS_PREFIX + "solidColorBlend" + suffix, solidColorBlend);
+        
         PlayerPrefs.Save();
         
         if (index == 0)
@@ -1072,6 +1096,10 @@ public class WindFieldStreamlinesRenderer : MonoBehaviour
         gradientColor3 = LoadColor(PREFS_PREFIX + "gradientColor3" + suffix, gradientColor3);
         gradientColor4 = LoadColor(PREFS_PREFIX + "gradientColor4" + suffix, gradientColor4);
         gradientColor5 = LoadColor(PREFS_PREFIX + "gradientColor5" + suffix, gradientColor5);
+        
+        // Load solid color properties
+        solidColor = LoadColor(PREFS_PREFIX + "solidColor" + suffix, solidColor);
+        solidColorBlend = PlayerPrefs.GetFloat(PREFS_PREFIX + "solidColorBlend" + suffix, solidColorBlend);
         
         if (index == 0)
         {
