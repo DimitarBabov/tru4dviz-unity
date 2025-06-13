@@ -75,8 +75,7 @@ public class StreamlinesRuntimeInspectorController : MonoBehaviour
                         "boundsLeft",
                         "boundsRight",
                         "boundsFront",
-                        "boundsBack",
-                        "toggleTerrain"
+                        "boundsBack"
                     }
                 });
 
@@ -140,7 +139,8 @@ public class StreamlinesRuntimeInspectorController : MonoBehaviour
                     variableNames = new string[] 
                     {
                         "solidColor",
-                        "solidColorBlend"
+                        "solidColorBlend"                        ,
+                        "toggleTerrain"
                     }
                 });
 

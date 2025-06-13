@@ -33,7 +33,7 @@ public class WindFieldStreamlinesRendererEditor : IRuntimeInspectorCustomEditor
         
         // Solid Color Section
         CreateHeaderSeparator(parent, "Solid Color");
-        parent.CreateDrawersForVariables("solidColor", "solidColorBlend");
+        parent.CreateDrawersForVariables("solidColor", "solidColorBlend", "toggleTerrain");
         
         // Preferences Section - Show both preference fields
         CreateHeaderSeparator(parent, "Preferences");

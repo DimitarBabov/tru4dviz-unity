@@ -170,7 +170,7 @@ MonoBehaviour:
   imgResourceFolder: img_encoded_nc_levels
   subFolder: low_levels_img_encoded
   minLevel: 0
-  maxLevel: 1
+  maxLevel: 14
   lat_origin: 0
   lon_origin: 0
   x_from_origin: []
@@ -461,7 +461,7 @@ MonoBehaviour:
   speedTrimLower: 0
   speedTrimUpper: 1
   flowDirectionGradientThreshold: 0
-  useGlobalMagnitudeRange: 0
+  useGlobalMagnitudeRange: 1
   globalMinWindMagnitude: 0
   globalMaxWindMagnitude: 20
   gradientColor0: {r: 0, g: 1, b: 1, a: 1}
@@ -470,6 +470,8 @@ MonoBehaviour:
   gradientColor3: {r: 0, g: 0.81960785, b: 0, a: 1}
   gradientColor4: {r: 1, g: 0.5019608, b: 0, a: 1}
   gradientColor5: {r: 1, g: 0, b: 0, a: 1}
+  solidColor: {r: 1, g: 1, b: 1, a: 1}
+  solidColorBlend: 0
   lineMaterial: {fileID: 2100000, guid: 0447ff1ea6951a749810047fa04ecc86, type: 2}
   lineTexture: {fileID: 2800000, guid: 51b30847c2edc674c936bf73903631dc, type: 3}
   compassMarkers: {fileID: 290740810}
@@ -841,7 +843,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224880000733725854, guid: d39ad26c554f1a04d870956f7fac6fd8, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -85
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 224880000733725854, guid: d39ad26c554f1a04d870956f7fac6fd8, type: 3}
       propertyPath: m_LocalScale.x
@@ -885,11 +887,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224880000733725854, guid: d39ad26c554f1a04d870956f7fac6fd8, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 224880000733725854, guid: d39ad26c554f1a04d870956f7fac6fd8, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 42.5
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 224880000733725854, guid: d39ad26c554f1a04d870956f7fac6fd8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1452,7 +1454,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -2640.1587, y: 75.00002}
+  m_AnchoredPosition: {x: -2640.1587, y: 25}
   m_SizeDelta: {x: 2165.3174, y: 50}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &941012806
@@ -2210,8 +2212,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 400, y: 0}
-  m_SizeDelta: {x: 2215, y: 150}
+  m_AnchoredPosition: {x: 263, y: 0}
+  m_SizeDelta: {x: 2215, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1374377530
 MonoBehaviour:
@@ -2669,7 +2671,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 2112, y: 1188}
+  m_ReferenceResolution: {x: 2000, y: 1200}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
@@ -2788,7 +2790,7 @@ MonoBehaviour:
   gizmoLineWidth: 2
   showRuntimeBoundary: 1
   boundaryLineMaterial: {fileID: 2100000, guid: bdbf559c33aeaa143a596ae9c9797472, type: 2}
-  runtimeLineWidth: 1
+  runtimeLineWidth: 2
   runtimeBoundaryColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1751466399
 GameObject:
